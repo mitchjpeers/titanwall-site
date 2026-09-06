@@ -130,7 +130,9 @@
     const run = (el) => {
       const target = parseInt(el.dataset.countTo, 10);
       const suffix = el.dataset.suffix || '';
-      if (prefersReduced) { el.textContent = fmt(target) + suffix; return; }
+      const prefix = el.dataset.prefix || '';
+      const paint = (n) => { el.textContent = prefix + fmt(n) + suffix; };
+      if (prefersReduced) { paint(target); return; }
 
       const duration = 1400;
       const start = performance.now();
@@ -138,7 +140,7 @@
         const p = Math.min((now - start) / duration, 1);
         // ease-out cubic: fast off the line, settles onto the number
         const eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = fmt(Math.round(target * eased)) + suffix;
+        paint(Math.round(target * eased));
         if (p < 1) requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
@@ -155,6 +157,27 @@
       });
     }, { threshold: 0, rootMargin: '0px 0px -15% 0px' });
     [...nums, ...words].forEach(n => cio.observe(n));
+  })();
+
+  // ===== R-VALUE BARS =====
+  // Bars grow from zero when the comparison scrolls into view, so the
+  // difference between the two walls reads as a movement, not a static graphic.
+  (function initBars(){
+    const bars = document.querySelectorAll('[data-bar]');
+    if (!bars.length) return;
+
+    const fill = (el) => {
+      const pct = el.dataset.bar + '%';
+      if (prefersReduced) { el.style.transition = 'none'; el.style.width = pct; return; }
+      requestAnimationFrame(() => { el.style.width = pct; });
+    };
+
+    const bio = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { fill(e.target); bio.unobserve(e.target); }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
+    bars.forEach(b => bio.observe(b));
   })();
 
   // ===== CONTACT FORM =====
