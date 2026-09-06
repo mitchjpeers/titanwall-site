@@ -223,8 +223,8 @@ function render(p, all) {
       </div>
 
       <aside class="proj-side">
-        <div class="proj-plate-lg reveal">
-          <svg viewBox="0 0 120 76" fill="none" stroke="#5b8dff" stroke-width="1.4" aria-hidden="true">${p.plate}</svg>
+        <div class="proj-photo-lg reveal">
+          <img src="../assets/proj-${p.slug}.jpg" alt="${esc(p.title)} — ${esc(p.category.toLowerCase())} build using Titanwall MGO SIPs" loading="lazy">
         </div>
         <div class="proj-feats reveal">
           <h3>Project features</h3>
@@ -258,7 +258,7 @@ function render(p, all) {
         ${others.map(o => `<a class="project-card reveal" href="${o.slug}.html">
           <div class="project-plate">
             <span class="project-cat">${esc(o.category)}</span>
-            <svg viewBox="0 0 120 76" fill="none" stroke="#5b8dff" stroke-width="1.4" aria-hidden="true">${o.plate}</svg>
+            <img src="../assets/proj-${o.slug}.jpg" alt="" loading="lazy">
           </div>
           <div class="project-body">
             <h3>${esc(o.title)}</h3>
