@@ -718,25 +718,6 @@
     100%{opacity:0;transform:translate(-50%,-50%) scale(2.6);}
   }
 
-  /* explicit dismissal for the intro — never trap people behind an animation */
-  .intro-skip{
-    position:absolute;
-    bottom:32px;right:32px;
-    z-index:6;
-    background:none;
-    border:1px solid var(--line-strong);
-    border-radius:2px;
-    color:var(--steel-light);
-    font-family:var(--font-mono);
-    font-size:12px;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    padding:12px 18px;
-    min-height:44px;
-    cursor:pointer;
-    transition:color .2s ease, border-color .2s ease;
-  }
-  .intro-skip:hover{color:var(--cobalt-light);border-color:var(--cobalt-light);}
 
   .intro-cube{
     position:relative;
@@ -854,7 +835,6 @@
   </div>
   <div class="intro-word">TITAN<span>WALLMGO</span></div>
   <div class="intro-line"></div>
-  <button type="button" class="intro-skip" id="introSkip">Skip</button>
 </div>
 
 <header>
@@ -1125,7 +1105,6 @@
         window.setTimeout(() => introOverlay.remove(), 650);
       };
 
-      document.getElementById('introSkip').addEventListener('click', dismissIntro);
       introOverlay.addEventListener('click', dismissIntro);
       window.addEventListener('keydown', dismissIntro);
       window.addEventListener('wheel', dismissIntro, { passive: true });
