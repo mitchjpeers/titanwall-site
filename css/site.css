@@ -777,12 +777,14 @@
   .precision-head h2 .muted{color:var(--steel);display:block;}
   .precision-head p{color:var(--steel-light);font-size:16px;max-width:460px;}
 
+  /* photo spans both card rows; four stat cards fill a 2x2 beside it */
   .precision-grid{
     display:grid;
-    grid-template-columns:0.9fr 1fr 1fr;
+    grid-template-columns:0.95fr 1fr 1fr;
     gap:24px;
   }
   .precision-photo{
+    grid-row:span 2;
     border:1px solid var(--line-strong);
     border-radius:2px;
     overflow:hidden;
@@ -826,7 +828,7 @@
     .precision-head{grid-template-columns:1fr;gap:24px;align-items:start;}
     .precision-grid{grid-template-columns:1fr 1fr;}
     /* spanning full width, the square crop would run enormously tall */
-    .precision-photo{grid-column:1/-1;min-height:0;height:260px;}
+    .precision-photo{grid-column:1/-1;grid-row:auto;min-height:0;height:260px;}
   }
   @media(max-width:640px){
     .precision-grid{grid-template-columns:1fr;}
