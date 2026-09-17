@@ -239,3 +239,19 @@
     });
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
+
+  // ===== R-VALUE CORE SELECTOR =====
+  // The EPS / GPS swatches set data-core on the section; CSS swaps the core
+  // texture in every cutaway and highlights the matching R-values.
+  (function initCoreSelector(){
+    const rv = document.querySelector('.rv[data-core]');
+    if (!rv) return;
+    const buttons = rv.querySelectorAll('[data-set-core]');
+    const label = rv.querySelector('[data-core-label]');
+    buttons.forEach(btn => btn.addEventListener('click', () => {
+      const core = btn.dataset.setCore;
+      rv.dataset.core = core;
+      buttons.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+      if (label) label.textContent = core.toUpperCase();
+    }));
+  })();
