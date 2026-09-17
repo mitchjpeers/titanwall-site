@@ -39,7 +39,7 @@
   // ===== MOBILE NAV =====
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
-  const mqMobileNav = window.matchMedia('(max-width: 860px)');
+  const mqMobileNav = window.matchMedia('(max-width: 1080px)');
 
   // Keep collapsed links out of the tab order. Without this, keyboard and
   // switch-control users tab into four invisible links.
@@ -253,5 +253,63 @@
       rv.dataset.core = core;
       buttons.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
       if (label) label.textContent = core.toUpperCase();
+    }));
+  })();
+
+  // ===== INSIDE THE BUILD: X-RAY WALKTHROUGH =====
+  // The building stays pinned while the steps scroll past; whichever step sits
+  // nearest the reading line lights up its part of the building. The numbered
+  // pins on the building jump to the matching step.
+  (function initXray(){
+    const xray = document.querySelector('.xray');
+    if (!xray) return;
+    const steps = [...xray.querySelectorAll('.xr-step')];
+    const pins = [...xray.querySelectorAll('.xr-pin')];
+    const dims = [...xray.querySelectorAll('.xr-dim')];
+    const outs = [...xray.querySelectorAll('.xr-out')];
+    const phone = window.matchMedia('(max-width: 760px)');
+    // mid-screen on desktop; on phones, below the pinned building
+    const readingLine = () => window.innerHeight * (phone.matches ? 0.74 : 0.5);
+    let current;
+
+    const activate = (zone) => {
+      if (zone === current) return;
+      current = zone;
+      xray.dataset.active = zone || '';
+      steps.forEach(s => s.classList.toggle('is-active', s.dataset.zone === zone));
+      pins.forEach(p => p.setAttribute('aria-pressed', String(p.dataset.zone === zone)));
+      dims.forEach(d => d.classList.toggle('on', d.dataset.zone === zone));
+      outs.forEach(o => o.classList.toggle('on', o.dataset.zone === zone));
+    };
+
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const line = readingLine();
+      const first = steps[0].getBoundingClientRect();
+      const last = steps[steps.length - 1].getBoundingClientRect();
+      if (first.top > line || last.bottom < line) { activate(null); return; }
+      let best = null, bestDist = Infinity;
+      steps.forEach(s => {
+        const r = s.getBoundingClientRect();
+        const d = Math.abs((r.top + r.bottom) / 2 - line);
+        if (d < bestDist) { bestDist = d; best = s; }
+      });
+      activate(best.dataset.zone);
+    };
+    const schedule = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    update();
+
+    pins.forEach(pin => pin.addEventListener('click', () => {
+      const step = steps.find(s => s.dataset.zone === pin.dataset.zone);
+      if (!step) return;
+      const r = step.getBoundingClientRect();
+      window.scrollTo({
+        top: window.scrollY + r.top + r.height / 2 - readingLine(),
+        behavior: prefersReduced ? 'auto' : 'smooth'
+      });
+      activate(pin.dataset.zone);
     }));
   })();

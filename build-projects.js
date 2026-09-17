@@ -163,16 +163,14 @@ function render(p, all) {
 <header>
   <nav>
     <a href="../index.html" class="logo">
-      <svg class="cube" viewBox="0 0 32 32" fill="none" aria-hidden="true" style="height:34px;width:34px;">
-        <path d="M16 4l11 6v12l-11 6-11-6V10z" stroke="#5b8dff" stroke-width="1.8"/>
-        <path d="M16 4v24M5 10l11 6 11-6" stroke="#5b8dff" stroke-width="1.4" opacity=".6"/>
-      </svg>
+      <img class="cube" src="../assets/logo-cube.png" alt="Titanwall MGO logo" width="34" height="34">
       <div><strong>TITAN</strong><span>WALLMGO</span></div>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="../index.html#panels">Panels</a></li>
+      <li><a href="../panel-system.html">Panel System</a></li>
+      <li><a href="../inside-the-building.html">Inside the Build</a></li>
+      <li><a href="../why-titanwall.html">Why Titanwall</a></li>
       <li><a href="../index.html#process">Process</a></li>
-      <li><a href="../index.html#tested">Testing</a></li>
       <li><a href="../index.html#projects">Projects</a></li>
       <li><a href="../index.html#contact">Contact</a></li>
       <li><a href="../index.html#contact" class="nav-quote">Get a Quote</a></li>
