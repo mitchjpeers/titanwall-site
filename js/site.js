@@ -8,7 +8,9 @@
   try { introSeen = sessionStorage.getItem('tw_intro') === '1'; } catch (e) {}
 
   if (introOverlay) {
-    if (prefersReduced || introSeen) {
+    // skip it when arriving for a specific section (e.g. a Quote link from another page),
+    // since the intro locks scrolling and would stop the jump to that section
+    if (prefersReduced || introSeen || location.hash) {
       introOverlay.remove();
     } else {
       try { sessionStorage.setItem('tw_intro', '1'); } catch (e) {}
@@ -220,7 +222,7 @@
     // When the backend lands, replace this block with the POST and
     // restore the "your inquiry is in" success message.
     // ---------------------------------------------------------------
-    const subject = encodeURIComponent('Project inquiry from ' + name);
+    const subject = encodeURIComponent((quoteForm.dataset.interest ? quoteForm.dataset.interest + ' — ' : '') + 'Project inquiry from ' + name);
     const body = encodeURIComponent(message + '\n\n— ' + name + '\n' + email);
     window.location.href = 'mailto:marc@titanwall.com?subject=' + subject + '&body=' + body;
     showStatus('Opening your email app with this inquiry ready to send. If nothing happens, email marc@titanwall.com directly.', 'ok');
@@ -390,4 +392,114 @@
       if (entries.some(e => e.isIntersecting)) { if (step === 1) setStep(1); seen.disconnect(); }
     }, { threshold: 0.35 });
     seen.observe(stage);
+  })();
+
+  // ===== EXPANDING CARD GRIDS =====
+  // One detail panel open at a time, placed directly under the row of the card
+  // that opened it (so on phones it sits right under the card you tapped).
+  document.querySelectorAll('[data-xp]').forEach(grid => {
+    const cards = [...grid.querySelectorAll('.xp-card')];
+    const panels = cards.map(c => document.getElementById(c.getAttribute('aria-controls')));
+    let openIdx = -1;
+
+    const columns = () => getComputedStyle(grid).gridTemplateColumns.split(' ').filter(Boolean).length;
+    const place = () => {
+      const cols = columns();
+      cards.forEach((c, i) => { c.style.order = i * 10; });
+      panels.forEach((p, i) => {
+        const rowEnd = Math.min(cards.length - 1, Math.floor(i / cols) * cols + cols - 1);
+        p.style.order = rowEnd * 10 + 5;
+      });
+    };
+
+    const close = () => {
+      if (openIdx < 0) return;
+      cards[openIdx].setAttribute('aria-expanded', 'false');
+      panels[openIdx].hidden = true;
+      openIdx = -1;
+    };
+    const open = (i) => {
+      close();
+      openIdx = i;
+      cards[i].setAttribute('aria-expanded', 'true');
+      panels[i].hidden = false;
+      const r = panels[i].getBoundingClientRect();
+      if (r.bottom > window.innerHeight || r.top < 0) {
+        panels[i].scrollIntoView({ block: 'nearest', behavior: prefersReduced ? 'auto' : 'smooth' });
+      }
+    };
+
+    cards.forEach((c, i) => c.addEventListener('click', () => (openIdx === i ? close() : open(i))));
+    grid.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && openIdx >= 0) { const c = cards[openIdx]; close(); c.focus(); }
+    });
+    place();
+    window.addEventListener('resize', place);
+  });
+
+  // ===== ACCORDIONS =====
+  document.querySelectorAll('.xp-acc').forEach(acc => {
+    const items = [...acc.querySelectorAll('.process-step')];
+    items.forEach(item => {
+      const btn = item.querySelector('.ps-toggle');
+      const body = item.querySelector('.ps-body');
+      btn.addEventListener('click', () => {
+        const willOpen = !item.classList.contains('is-open');
+        items.forEach(other => {
+          const on = other === item && willOpen;
+          other.classList.toggle('is-open', on);
+          other.querySelector('.ps-toggle').setAttribute('aria-expanded', String(on));
+          other.querySelector('.ps-body').inert = !on;
+        });
+        if (willOpen) body.querySelector('img')?.setAttribute('loading', 'eager');
+        // keep the clicked step still while the one above it collapses
+        const top0 = btn.getBoundingClientRect().top;
+        const t0 = performance.now();
+        const hold = () => {
+          const d = btn.getBoundingClientRect().top - top0;
+          if (Math.abs(d) > 0.5) window.scrollBy(0, d);
+          if (performance.now() - t0 < 520) requestAnimationFrame(hold);
+        };
+        requestAnimationFrame(hold);
+      });
+    });
+  });
+
+  // ===== "ASK ABOUT THIS" → QUOTE FORM =====
+  // Links carry ?interest=...; on the homepage the topic is shown above the
+  // form and seeded into the message. Same-page links skip the reload.
+  (function initInterest(){
+    const form = document.getElementById('quoteForm');
+    if (!form) return;
+    const chip = document.getElementById('formInterest');
+    const label = chip.querySelector('b');
+    let seeded = '';
+
+    const apply = (topic, flash) => {
+      topic = (topic || '').trim().slice(0, 80);
+      if (!topic) return;
+      label.textContent = topic;
+      chip.hidden = false;
+      form.dataset.interest = topic;
+      const msg = form.message;
+      const line = `I'd like to ask about ${topic}.`;
+      if (!msg.value.trim() || msg.value === seeded) { msg.value = line + '\n\n'; seeded = msg.value; }
+      if (flash) { chip.classList.remove('form-flash'); void chip.offsetWidth; chip.classList.add('form-flash'); }
+    };
+    chip.querySelector('button').addEventListener('click', () => {
+      chip.hidden = true; delete form.dataset.interest;
+      if (form.message.value === seeded) form.message.value = '';
+      seeded = '';
+      const url = new URL(location.href); url.searchParams.delete('interest'); history.replaceState(null, '', url);
+    });
+
+    const fromUrl = new URLSearchParams(location.search).get('interest');
+    if (fromUrl) apply(fromUrl, true);
+
+    document.querySelectorAll('a[data-interest]').forEach(a => a.addEventListener('click', (e) => {
+      e.preventDefault();
+      apply(a.dataset.interest, true);
+      document.getElementById('contact').scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth' });
+      setTimeout(() => form.name.focus({ preventScroll: true }), prefersReduced ? 0 : 650);
+    }));
   })();
