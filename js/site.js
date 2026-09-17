@@ -313,3 +313,81 @@
       activate(pin.dataset.zone);
     }));
   })();
+
+  // ===== BASE PLATE STEP-THROUGH =====
+  // The drawing builds up with each step; component chips highlight their part.
+  // Without JS the section shows the finished drawing and every step as a list.
+  (function initBasePlate(){
+    const bp = document.querySelector('.bp');
+    if (!bp) return;
+    bp.classList.add('js');
+
+    const stage = bp.querySelector('.bp-stage');
+    const tabs = [...bp.querySelectorAll('[role="tab"]')];
+    const panels = [...bp.querySelectorAll('.bp-step')];
+    const prev = bp.querySelector('.bp-prev');
+    const next = bp.querySelector('.bp-next');
+    const num = bp.querySelector('[data-bp-num]');
+    const bars = [...bp.querySelectorAll('.bp-progress i')];
+    const chips = [...bp.querySelectorAll('.bp-chip')];
+    const LAST = tabs.length;
+    let step = 1;
+
+    const clearHighlight = () => {
+      stage.removeAttribute('data-hl');
+      chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
+    };
+
+    const setStep = (n, opts = {}) => {
+      step = Math.max(1, Math.min(LAST, n));
+      bp.dataset.step = stage.dataset.step = step;
+      stage.querySelectorAll('[data-from]').forEach(g => {
+        const from = +g.dataset.from;
+        g.classList.toggle('on', from <= step);
+        g.classList.toggle('now', from === step);
+      });
+      stage.querySelectorAll('[data-only]').forEach(g => g.classList.toggle('on', +g.dataset.only === step));
+      // restart this step's entrance animation
+      stage.classList.remove('play'); void stage.offsetWidth; stage.classList.add('play');
+
+      tabs.forEach((t, i) => {
+        const selected = i + 1 === step;
+        t.setAttribute('aria-selected', String(selected));
+        t.tabIndex = selected ? 0 : -1;
+        t.classList.toggle('done', i + 1 < step);
+      });
+      panels.forEach((p, i) => p.classList.toggle('is-on', i + 1 === step));
+      bars.forEach((b, i) => b.classList.toggle('on', i < step));
+      num.textContent = String(step).padStart(2, '0');
+      prev.disabled = step === 1;
+      next.innerHTML = step === LAST ? 'Start over &#8634;' : 'Next step &#8594;';
+      if (opts.focus) tabs[step - 1].focus();
+      if (!opts.keepHighlight) clearHighlight();
+    };
+
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => setStep(i + 1));
+      t.addEventListener('keydown', (e) => {
+        const to = { ArrowRight: i + 2, ArrowLeft: i, Home: 1, End: LAST }[e.key];
+        if (to === undefined) return;
+        e.preventDefault();
+        setStep(to > LAST ? 1 : to < 1 ? LAST : to, { focus: true });
+      });
+    });
+    prev.addEventListener('click', () => setStep(step - 1));
+    next.addEventListener('click', () => setStep(step === LAST ? 1 : step + 1));
+
+    chips.forEach(chip => chip.addEventListener('click', () => {
+      if (chip.getAttribute('aria-pressed') === 'true') { clearHighlight(); return; }
+      if (step < LAST) setStep(LAST, { keepHighlight: true });   // every part exists on the last step
+      stage.dataset.hl = chip.dataset.part;
+      chips.forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
+    }));
+
+    setStep(1);
+    // replay step 1 the first time the section comes into view
+    const seen = new IntersectionObserver((entries) => {
+      if (entries.some(e => e.isIntersecting)) { if (step === 1) setStep(1); seen.disconnect(); }
+    }, { threshold: 0.35 });
+    seen.observe(stage);
+  })();
