@@ -137,6 +137,9 @@ const FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vi
 
 function render(p, all) {
   const others = all.filter(o => o.slug !== p.slug).slice(0, 3);
+  const idx = all.indexOf(p);
+  const prev = all[(idx - 1 + all.length) % all.length];
+  const next = all[(idx + 1) % all.length];
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -248,6 +251,10 @@ function render(p, all) {
 
   <section class="proj-more">
     <div class="container">
+      <nav class="proj-pager" aria-label="Browse projects">
+        <a class="pp pp-prev" href="${prev.slug}.html" rel="prev"><span class="pp-dir">&#8592; Previous project</span><span class="pp-title">${esc(prev.title)}</span></a>
+        <a class="pp pp-next" href="${next.slug}.html" rel="next"><span class="pp-dir">Next project &#8594;</span><span class="pp-title">${esc(next.title)}</span></a>
+      </nav>
       <div class="section-head reveal">
         <div class="eyebrow">More work</div>
         <h2>Other projects</h2>

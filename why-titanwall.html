@@ -65,8 +65,14 @@
         <h2 id="side-h">Eleven ways they differ.</h2>
       </div>
 
+      <div class="filters reveal" role="group" aria-label="Filter the comparison" data-filter-for="side-table">
+        <button type="button" aria-pressed="true" data-filter="all">All <span>11</span></button>
+        <button type="button" aria-pressed="false" data-filter="durability">Durability <span>5</span></button>
+        <button type="button" aria-pressed="false" data-filter="performance">Performance <span>4</span></button>
+        <button type="button" aria-pressed="false" data-filter="build">Build <span>2</span></button>
+      </div>
       <div class="table-wrap reveal">
-        <table class="spec">
+        <table class="spec side-table" id="side-table">
           <caption>MGO SIP panels vs stick built</caption>
           <thead>
             <tr>
@@ -76,17 +82,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr><th scope="row">Fire resistance</th><td class="col-own"><span class="mark yes" style="font-family:var(--font-mono);font-size:13px;color:#5fd39a;">Excellent</span></td><td><span style="color:#ff8c8c;">Poor</span></td></tr>
-            <tr><th scope="row">Mould resistance</th><td class="col-own"><span style="color:#5fd39a;">Excellent</span></td><td><span style="color:#e8b567;">Moderate</span></td></tr>
-            <tr><th scope="row">Rot resistance</th><td class="col-own"><span style="color:#5fd39a;">Excellent</span></td><td><span style="color:#ff8c8c;">Poor</span></td></tr>
-            <tr><th scope="row">Airtightness</th><td class="col-own"><span style="color:#5fd39a;">Excellent</span> <span style="color:var(--steel);">(0.3 – 2.0 ACH)</span></td><td><span style="color:#e8b567;">Moderate</span> <span style="color:var(--steel);">(2.5 – 5.0 ACH)</span></td></tr>
-            <tr><th scope="row">Energy efficiency</th><td class="col-own">Up to <b style="color:var(--white);">60% better</b></td><td>Standard</td></tr>
-            <tr><th scope="row">Build speed</th><td class="col-own">Fast — up to <b style="color:var(--white);">80% faster</b></td><td>Slower</td></tr>
-            <tr><th scope="row">Labour requirements</th><td class="col-own">Lower</td><td>Higher</td></tr>
-            <tr><th scope="row">Maintenance</th><td class="col-own">Low</td><td>Higher</td></tr>
-            <tr><th scope="row">Indoor air quality</th><td class="col-own">Healthier — no VOCs</td><td>Can have VOCs</td></tr>
-            <tr><th scope="row">Structural strength</th><td class="col-own">Up to <b style="color:var(--white);">5&times; stronger</b></td><td>Standard framing</td></tr>
-            <tr><th scope="row">Insulation</th><td class="col-own">Continuous, no thermal bridging</td><td>Interrupted at every stud</td></tr>
+            <tr data-cat="durability"><th scope="row">Fire resistance</th><td class="col-own"><span class="rate r3"><i></i><i></i><i></i><em>Excellent</em></span></td><td><span class="rate r1"><i></i><i></i><i></i><em>Poor</em></span></td></tr>
+            <tr data-cat="durability"><th scope="row">Mould resistance</th><td class="col-own"><span class="rate r3"><i></i><i></i><i></i><em>Excellent</em></span></td><td><span class="rate r2"><i></i><i></i><i></i><em>Moderate</em></span></td></tr>
+            <tr data-cat="durability"><th scope="row">Rot resistance</th><td class="col-own"><span class="rate r3"><i></i><i></i><i></i><em>Excellent</em></span></td><td><span class="rate r1"><i></i><i></i><i></i><em>Poor</em></span></td></tr>
+            <tr data-cat="performance"><th scope="row">Airtightness</th><td class="col-own"><span class="rate r3"><i></i><i></i><i></i><em>Excellent</em></span> <span style="color:var(--steel);">(0.3 – 2.0 ACH)</span></td><td><span class="rate r2"><i></i><i></i><i></i><em>Moderate</em></span> <span style="color:var(--steel);">(2.5 – 5.0 ACH)</span></td></tr>
+            <tr data-cat="performance"><th scope="row">Energy efficiency</th><td class="col-own">Up to <b style="color:var(--white);">60% better</b></td><td>Standard</td></tr>
+            <tr data-cat="build"><th scope="row">Build speed</th><td class="col-own">Fast — up to <b style="color:var(--white);">80% faster</b></td><td>Slower</td></tr>
+            <tr data-cat="build"><th scope="row">Labour requirements</th><td class="col-own">Lower</td><td>Higher</td></tr>
+            <tr data-cat="durability"><th scope="row">Maintenance</th><td class="col-own">Low</td><td>Higher</td></tr>
+            <tr data-cat="performance"><th scope="row">Indoor air quality</th><td class="col-own">Healthier — no VOCs</td><td>Can have VOCs</td></tr>
+            <tr data-cat="durability"><th scope="row">Structural strength</th><td class="col-own">Up to <b style="color:var(--white);">5&times; stronger</b></td><td>Standard framing</td></tr>
+            <tr data-cat="performance"><th scope="row">Insulation</th><td class="col-own">Continuous, no thermal bridging</td><td>Interrupted at every stud</td></tr>
           </tbody>
         </table>
       </div>
@@ -132,9 +138,24 @@
       <p class="rbar-note">Build time costs include fencing, bin rental, construction insurance, rentals, financing and delays.</p>
 
       <div class="split wide-right" style="margin-top:40px;align-items:stretch;">
-        <div class="headline-stat reveal" style="margin-top:0;display:flex;flex-direction:column;justify-content:center;">
-          <div class="hs-num" data-count-to="42000" data-prefix="$" data-suffix="">$0</div>
-          <div class="hs-lbl">Energy saved over 30 years</div>
+        <div class="calc reveal" data-calc>
+          <div class="calc-head">
+            <h3>Run the numbers</h3>
+            <p>Scaled from the 1,500 sq ft estimate above &mdash; a rough guide, not a quote.</p>
+          </div>
+          <label class="calc-row">
+            <span class="calc-lbl">Home size <output data-o="size">1,500 sq ft</output></span>
+            <input type="range" min="800" max="4000" step="100" value="1500" data-in="size">
+          </label>
+          <label class="calc-row">
+            <span class="calc-lbl">Years in the home <output data-o="years">30 years</output></span>
+            <input type="range" min="1" max="50" step="1" value="30" data-in="years">
+          </label>
+          <dl class="calc-out" aria-live="polite">
+            <div><dt>Build cost saving</dt><dd data-o="build">$10,600</dd></div>
+            <div><dt>Energy saved</dt><dd data-o="energy">$42,000</dd></div>
+            <div class="total"><dt>Estimated total</dt><dd data-o="total">$52,600</dd></div>
+          </dl>
         </div>
         <div class="cost-note reveal" style="margin-top:0;">
           <ul>
@@ -182,6 +203,26 @@
             <li><span class="ic">&#10007;</span><span>Prone to cracking and settlement</span></li>
           </ul>
         </div>
+      </div>
+
+      <div class="race reveal" data-race>
+        <div class="race-head">
+          <h3>Installation vs cure time</h3>
+          <button type="button" class="btn btn-outline race-replay" data-race-replay>Replay &#8634;</button>
+        </div>
+        <div class="race-day" aria-hidden="true">Day <b data-race-day>0</b></div>
+        <div class="race-row own">
+          <span class="race-name">Titanwall MGO SIP frost wall</span>
+          <div class="race-track"><i data-days="2"></i></div>
+          <span class="race-end">Installed in 1&ndash;2 days</span>
+        </div>
+        <div class="race-row">
+          <span class="race-name">Poured concrete</span>
+          <div class="race-track"><i data-days="28"></i></div>
+          <span class="race-end">28-day cure</span>
+        </div>
+        <div class="race-axis" aria-hidden="true"><span>0</span><span>7</span><span>14</span><span>21</span><span>28 days</span></div>
+        <p class="rbar-note">Concrete is shown as cure time only &mdash; excavation, forming and pumping come on top of it.</p>
       </div>
 
       <div class="split" style="margin-top:44px;">
@@ -251,6 +292,10 @@
           <div class="hs-num" data-count-to="4000" data-suffix="">0</div>
           <div class="hs-lbl">Sq ft micro-cultivation, Sherwood Park AB</div>
         </div>
+      </div>
+      <div class="grow-next reveal">
+        <a class="inline-link" href="projects/cannabis-facility-build.html">See the cannabis facility build &#8594;</a>
+        <a class="btn btn-primary" href="index.html?interest=Grow%20facility#contact">Ask about a grow facility &#8594;</a>
       </div>
     </div>
   </section>
