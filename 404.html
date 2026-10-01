@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>
+  // served for any missing URL, at any depth: anchor relative links to the site root
+  document.write('<base href="' + (/^\/titanwall-site\//.test(location.pathname) ? '/titanwall-site/' : '/') + '">');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Page not found — Titanwall MGO</title>
+<meta name="description" content="The page you were looking for isn’t here.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0d10'/%3E%3Cpath d='M16 5l10 5.5v11L16 27 6 21.5v-11z' fill='none' stroke='%235b8dff' stroke-width='2'/%3E%3Cpath d='M16 5v22M6 10.5l10 5.5 10-5.5' fill='none' stroke='%235b8dff' stroke-width='1.5' opacity='.6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#top">Skip to content</a>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo">
+      <img class="cube" src="assets/logo-cube.png" alt="Titanwall MGO logo" width="34" height="34">
+      <div><strong>TITAN</strong><span>WALLMGO</span></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="panel-system.html">Panel System</a></li>
+      <li><a href="inside-the-building.html">Inside the Build</a></li>
+      <li><a href="why-titanwall.html">Why Titanwall</a></li>
+      <li><a href="index.html#process">Process</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="index.html#contact" class="nav-quote">Get a Quote</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="index.html#contact" class="btn btn-primary">Get a Quote</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="proj-hero">
+    <div class="blueprint-grid" aria-hidden="true"></div>
+    <div class="container">
+      <a class="back-link" href="index.html">&#8592; Back to home</a>
+      <div class="eyebrow">Error 404</div>
+      <h1>This page isn&rsquo;t here.</h1>
+      <p class="proj-lede">The link may be old or mistyped. Everything on the site is one click away below.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="page-links page-links-3">
+        <a class="page-link-card" href="index.html"><h3>Home</h3><p>MGO structural insulated panels: structure, insulation and barrier in one.</p><span class="go">Go home &#8594;</span></a>
+        <a class="page-link-card" href="panel-system.html"><h3>The Panel System</h3><p>Construction, specifications, R-value and fire performance.</p><span class="go">See the engineering &#8594;</span></a>
+        <a class="page-link-card" href="index.html#contact"><h3>Get a quote</h3><p>Tell us about your project and we&rsquo;ll get back to you.</p><span class="go">Contact us &#8594;</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span>&copy; 2026 Titanwall MGO Insulated Panels</span>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/titanwalltechnologies/" target="_blank" rel="noopener">Instagram<span class="sr-only"> (opens in a new tab)</span></a>
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="#top">Back to top</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>

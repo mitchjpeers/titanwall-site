@@ -154,6 +154,19 @@ function render(p, all) {
 <meta property="og:description" content="${esc(p.blurb)}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="${FAVICON}">
+<!-- seo:start (maintained by tools/seo.js) -->
+<link rel="canonical" href="https://mitchjpeers.github.io/titanwall-site/projects/${p.slug}.html">
+<meta property="og:site_name" content="Titanwall MGO">
+<meta property="og:locale" content="en_CA">
+<meta property="og:url" content="https://mitchjpeers.github.io/titanwall-site/projects/${p.slug}.html">
+<meta property="og:image" content="https://mitchjpeers.github.io/titanwall-site/assets/og-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Titanwall MGO: structure, insulation, barrier, one panel">
+<meta name="twitter:image" content="https://mitchjpeers.github.io/titanwall-site/assets/og-share.jpg">
+<meta name="theme-color" content="#0b0d10">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<!-- seo:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -297,6 +310,7 @@ function render(p, all) {
     <div class="footer-social">
       <a href="https://www.instagram.com/titanwalltechnologies/" target="_blank" rel="noopener">Instagram<span class="sr-only"> (opens in a new tab)</span></a>
       <a href="../index.html">Home</a>
+      <a href="../privacy.html">Privacy</a>
       <a href="#top">Back to top</a>
     </div>
   </div>

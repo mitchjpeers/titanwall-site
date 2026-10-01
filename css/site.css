@@ -35,6 +35,8 @@
   a{color:inherit;text-decoration:none;}
   ul{list-style:none;}
   img,video{max-width:100%;display:block;}
+  /* the hidden attribute always wins over component display rules */
+  [hidden]{display:none !important;}
 
   :focus-visible{
     outline:2px solid var(--cobalt-light);
@@ -579,7 +581,7 @@
   /* sentence case: uppercase adds friction on form labels without adding character */
   label{font-family:var(--font-mono);font-size:13px;letter-spacing:0.02em;color:var(--steel-light);}
   label .req{color:var(--cobalt-light);margin-left:2px;}
-  input,textarea{
+  input,textarea,select{
     background:var(--bg);
     border:1px solid var(--line-strong);
     color:var(--white);
@@ -588,7 +590,7 @@
     font-family:var(--font-body);
     font-size:14.5px;
   }
-  input:focus,textarea:focus{border-color:var(--cobalt-light);}
+  input:focus,textarea:focus,select:focus{border-color:var(--cobalt-light);}
   textarea{resize:vertical;min-height:110px;}
 
   /* inline form feedback — replaces the blocking alert() */
@@ -3037,3 +3039,82 @@
   /* card grids placed inside a text column get two columns, not four */
   .split-copy .net-grid{grid-template-columns:1fr 1fr;}
   @media(max-width:520px){.split-copy .net-grid{grid-template-columns:1fr;}}
+
+  /* ===== QUOTE FORM v2 ===== */
+  .quote-form{position:relative;}
+  /* the global form{display:flex} rule would otherwise beat [hidden] */
+  .quote-form[hidden]{display:none;}
+  button.btn-outline{background:transparent;}
+  a[href^="tel:"]{white-space:nowrap;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .field-row .field{min-width:0;}
+  .quote-form label .opt{font-size:11.5px;color:var(--steel);margin-left:4px;letter-spacing:0;}
+  .quote-form input::placeholder,.quote-form textarea::placeholder{color:rgba(139,147,160,.65);}
+  .quote-form select{
+    appearance:none;-webkit-appearance:none;
+    font-family:var(--font-body);font-size:14.5px;
+    padding-right:38px;cursor:pointer;
+    background-color:var(--bg);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238b93a0' stroke-width='1.6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;background-size:12px 8px;
+    color:var(--white);
+  }
+  .quote-form select:invalid,.quote-form select option[value=""]{color:var(--steel);}
+  .quote-form select option{background:var(--bg-alt);color:var(--white);}
+  .quote-form [aria-invalid="true"]{border-color:#ff8c8c;}
+  .quote-form [aria-invalid="true"]:focus{border-color:#ffb4b4;}
+  .field-err{font-size:13px;color:#ffb4b4;line-height:1.4;margin-top:-2px;}
+  .field-err[hidden]{display:none;}
+  .form-actions{display:flex;align-items:center;gap:12px 20px;flex-wrap:wrap;margin-top:6px;}
+  .form-privacy{font-size:12.5px;color:var(--steel);line-height:1.5;}
+  .form-privacy a{color:var(--steel-light);text-decoration:underline;text-underline-offset:2px;}
+  .form-privacy a:hover{color:var(--cobalt-light);}
+  #quoteSubmit[disabled]{opacity:.75;cursor:progress;}
+  #quoteSubmit .spin{
+    width:14px;height:14px;border-radius:50%;
+    border:2px solid rgba(255,255,255,.35);border-top-color:#fff;
+    animation:qspin .7s linear infinite;
+  }
+  @keyframes qspin{to{transform:rotate(360deg);}}
+  .form-status a{color:inherit;text-decoration:underline;text-underline-offset:2px;}
+
+  /* honeypot: off-screen rather than display:none, which some bots skip */
+  .hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
+
+  .quote-done{
+    border:1px solid rgba(91,141,255,.35);
+    border-radius:3px;
+    background:linear-gradient(160deg,rgba(47,95,222,.12),var(--panel) 70%);
+    padding:36px 32px;
+    display:flex;flex-direction:column;align-items:flex-start;gap:12px;
+    align-self:start;
+  }
+  .quote-done[hidden]{display:none;}
+  .quote-done:focus{outline:none;}
+  .qd-icon{
+    width:44px;height:44px;border-radius:50%;
+    border:1px solid var(--cobalt-light);
+    display:flex;align-items:center;justify-content:center;margin-bottom:6px;
+  }
+  .qd-icon svg{width:22px;height:22px;fill:none;stroke:var(--cobalt-light);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  .quote-done h3{font-size:clamp(22px,2.6vw,28px);text-transform:none;}
+  .quote-done p{color:var(--steel-light);font-size:15.5px;line-height:1.6;}
+  .quote-done p b{color:var(--white);font-weight:600;}
+  .quote-done .qd-sub{font-size:14px;color:var(--steel);}
+  .quote-done .qd-sub a{color:var(--cobalt-light);}
+  .quote-done .btn{margin-top:10px;}
+  @media(max-width:560px){
+    .field-row{grid-template-columns:1fr;}
+    .quote-done{padding:28px 22px;}
+  }
+  @media(prefers-reduced-motion:reduce){#quoteSubmit .spin{animation:none;}}
+
+  /* ===== LEGAL PAGES ===== */
+  .legal-body{max-width:760px;padding-top:8px;padding-bottom:24px;}
+  .legal-date{font-family:var(--font-mono);font-size:12.5px;color:var(--steel);letter-spacing:.04em;}
+  .legal-body h2{font-size:clamp(20px,2.2vw,24px);text-transform:none;margin:40px 0 12px;}
+  .legal-body p,.legal-body li{color:var(--steel-light);font-size:16px;line-height:1.7;}
+  .legal-body p + p{margin-top:12px;}
+  .legal-body ul{list-style:disc;padding-left:22px;display:flex;flex-direction:column;gap:8px;}
+  .legal-body a{color:var(--cobalt-light);text-decoration:underline;text-underline-offset:2px;}
+  .proj-lede a.inline-link{white-space:nowrap;}

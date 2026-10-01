@@ -1,4 +1,46 @@
-// ===== INTRO ANIMATION =====
+// ===== ANALYTICS =====
+  // Cookieless visitor analytics (Umami Cloud): no cookies, no consent banner,
+  // nothing visible on the page. Paste the website ID from the Umami dashboard
+  // below. Loads only on the domains listed, so local testing never counts,
+  // and skips anyone whose browser sends Do Not Track.
+  const ANALYTICS = {
+    umamiWebsiteId: '',
+    domains: 'mitchjpeers.github.io',
+  };
+  const trackQueue = [];
+  function track(name, data) {
+    try {
+      if (window.umami && typeof window.umami.track === 'function') window.umami.track(name, data);
+      else if (trackQueue.length < 50) trackQueue.push([name, data]);
+    } catch (e) {}
+  }
+  (function loadAnalytics(){
+    if (!ANALYTICS.umamiWebsiteId) return;
+    const hosts = ANALYTICS.domains.split(',').map(d => d.trim());
+    if (!hosts.includes(location.hostname)) return;
+    const s = document.createElement('script');
+    s.defer = true;
+    s.src = 'https://cloud.umami.is/script.js';
+    s.dataset.websiteId = ANALYTICS.umamiWebsiteId;
+    s.dataset.domains = ANALYTICS.domains;
+    s.dataset.doNotTrack = 'true';
+    s.addEventListener('load', () => { trackQueue.splice(0).forEach(([n, d]) => track(n, d)); });
+    document.head.appendChild(s);
+  })();
+  // the clicks that matter for leads, recorded wherever they happen
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    const page = location.pathname.split('/').pop() || 'index.html';
+    if (href.startsWith('tel:')) track('Phone click', { page });
+    else if (href.startsWith('mailto:')) track('Email click', { page });
+    else if (/instagram\.com/.test(href)) track('Instagram click', { page });
+    else if (/#contact$/.test(href) || a.dataset.interest || /[?&]interest=/.test(href))
+      track('Quote button click', { page, label: (a.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 60) });
+  }, true);
+
+  // ===== INTRO ANIMATION =====
   // Dismissible at any time, and shown once per browser session rather than
   // on every page load — nobody should be gated behind the same animation twice.
   const introOverlay = document.getElementById('introOverlay');
@@ -183,49 +225,203 @@
   })();
 
   // ===== CONTACT FORM =====
-  // Inline validation + status, no blocking alert(). The submit handler is the
-  // single place to swap in the real backend.
+  // Sends quote requests to the inbox tied to the Web3Forms access key in the
+  // form's hidden access_key field. Without JS the same form posts directly
+  // and lands on thanks.html. With no key set yet, falls back to mailto.
   const quoteForm = document.getElementById('quoteForm');
-  const formStatus = document.getElementById('formStatus');
-  const quoteSubmit = document.getElementById('quoteSubmit');
 
   // project pages share this script but carry no form
   if (quoteForm) {
 
-  const showStatus = (msg, kind) => {
-    formStatus.textContent = msg;
+  const formStatus = document.getElementById('formStatus');
+  const quoteSubmit = document.getElementById('quoteSubmit');
+  const quoteDone = document.getElementById('quoteDone');
+  const SEND_LABEL = quoteSubmit.textContent;
+  const FALLBACK_EMAIL = 'marc@titanwall.com';
+  const FALLBACK_PHONE = '403 606-0855';
+  const DRAFT_KEY = 'tw_quote_draft';
+  const DRAFT_FIELDS = ['name', 'email', 'phone', 'project_type', 'location', 'message'];
+  const el = (n) => quoteForm.elements[n];
+
+  const showStatus = (html, kind) => {
+    formStatus.innerHTML = html;
     formStatus.className = 'form-status ' + kind;
     formStatus.hidden = false;
   };
+  const clearStatus = () => { formStatus.hidden = true; formStatus.textContent = ''; };
+
+  const setFieldError = (name, msg) => {
+    const input = el(name), err = document.getElementById(name + '-err');
+    if (!input || !err) return;
+    if (msg) { input.setAttribute('aria-invalid', 'true'); err.textContent = msg; err.hidden = false; }
+    else { input.removeAttribute('aria-invalid'); err.textContent = ''; err.hidden = true; }
+  };
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/;
+  const validators = {
+    name: v => v ? '' : 'Please add your name.',
+    email: v => !v ? 'Please add your email so we can reply.' : (EMAIL_RE.test(v) ? '' : 'That email address doesn\u2019t look right.'),
+    phone: v => !v || v.replace(/\D/g, '').length >= 7 ? '' : 'That phone number looks too short.',
+    message: v => v ? '' : 'Please tell us a little about the project.',
+  };
+  const validate = () => {
+    let first = null;
+    for (const [name, check] of Object.entries(validators)) {
+      const msg = check(el(name).value.trim());
+      setFieldError(name, msg);
+      if (msg && !first) first = el(name);
+    }
+    return first;
+  };
+  // re-check a field as soon as it's corrected, not on every keystroke before that
+  Object.keys(validators).forEach(name => {
+    el(name).addEventListener('input', () => {
+      if (el(name).getAttribute('aria-invalid') === 'true') setFieldError(name, validators[name](el(name).value.trim()));
+    });
+    el(name).addEventListener('blur', () => {
+      const v = el(name).value.trim();
+      if (v) setFieldError(name, validators[name](v));
+    });
+  });
+
+  // keep a draft for the session so a reload or a wander to another page
+  // doesn't lose what someone typed
+  const saveDraft = () => {
+    try {
+      const d = {}; DRAFT_FIELDS.forEach(n => { d[n] = el(n).value; });
+      sessionStorage.setItem(DRAFT_KEY, JSON.stringify(d));
+    } catch (e) {}
+  };
+  try {
+    const d = JSON.parse(sessionStorage.getItem(DRAFT_KEY) || 'null');
+    if (d) DRAFT_FIELDS.forEach(n => { if (d[n] && !el(n).value) el(n).value = d[n]; });
+  } catch (e) {}
+  quoteForm.addEventListener('input', saveDraft);
+  quoteForm.addEventListener('change', saveDraft);
+
+  let started = false;
+  quoteForm.addEventListener('focusin', () => { if (!started) { started = true; track('Quote form started'); } });
+
+  const setBusy = (busy) => {
+    quoteSubmit.disabled = busy;
+    quoteForm.setAttribute('aria-busy', String(busy));
+    quoteSubmit.innerHTML = busy ? '<span class="spin" aria-hidden="true"></span>Sending\u2026' : SEND_LABEL;
+  };
+
+  const contactLine = `email <a href="mailto:${FALLBACK_EMAIL}">${FALLBACK_EMAIL}</a> or call <a href="tel:+14036060855">${FALLBACK_PHONE}</a>`;
+
+  const showDone = (name, email) => {
+    const first = name.split(/\s+/)[0];
+    document.getElementById('quoteDoneTitle').textContent = `Thanks, ${first} \u2014 your inquiry is in.`;
+    const body = document.getElementById('quoteDoneBody');
+    body.textContent = 'We\u2019ll reply to ';
+    const b = document.createElement('b'); b.textContent = email; body.appendChild(b);
+    body.appendChild(document.createTextNode(', usually within one business day.'));
+    quoteForm.hidden = true;
+    quoteDone.hidden = false;
+    quoteDone.focus();
+  };
+
+  document.getElementById('quoteAgain').addEventListener('click', () => {
+    quoteDone.hidden = true;
+    quoteForm.hidden = false;
+    clearStatus();
+    el('message').value = '';
+    el('message').focus();
+  });
 
   quoteForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (quoteSubmit.disabled) return;
+    clearStatus();
 
-    const name = quoteForm.name.value.trim();
-    const email = quoteForm.email.value.trim();
-    const message = quoteForm.message.value.trim();
-
-    if (!name || !email || !message) {
-      showStatus('Please fill in every field so we can get back to you.', 'err');
-      (!name ? quoteForm.name : !email ? quoteForm.email : quoteForm.message).focus();
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      showStatus('That email address doesn\'t look right — mind checking it?', 'err');
-      quoteForm.email.focus();
+    const firstBad = validate();
+    if (firstBad) {
+      showStatus('Please fix the highlighted fields.', 'err');
+      firstBad.focus();
+      track('Quote form invalid');
       return;
     }
 
-    // ---------------------------------------------------------------
-    // No backend is connected yet. Rather than claim a send that didn't
-    // happen, hand the visitor a mailto: they can actually complete.
-    // When the backend lands, replace this block with the POST and
-    // restore the "your inquiry is in" success message.
-    // ---------------------------------------------------------------
-    const subject = encodeURIComponent((quoteForm.dataset.interest ? quoteForm.dataset.interest + ' — ' : '') + 'Project inquiry from ' + name);
-    const body = encodeURIComponent(message + '\n\n— ' + name + '\n' + email);
-    window.location.href = 'mailto:marc@titanwall.com?subject=' + subject + '&body=' + body;
-    showStatus('Opening your email app with this inquiry ready to send. If nothing happens, email marc@titanwall.com directly.', 'ok');
+    const v = n => el(n).value.trim();
+    const name = v('name'), email = v('email'), message = v('message');
+    const topic = quoteForm.dataset.interest || '';
+    const projectType = v('project_type');
+
+    // honeypot ticked: behave as if it worked, send nothing
+    if (el('botcheck').checked) {
+      try { sessionStorage.removeItem(DRAFT_KEY); } catch (_) {}
+      quoteForm.reset();
+      showDone(name, email);
+      return;
+    }
+
+    const key = v('access_key');
+    if (!key) {
+      // not connected yet: hand over a mailto the visitor can finish
+      const subject = encodeURIComponent((topic || projectType ? (topic || projectType) + ' \u2014 ' : '') + 'Project inquiry from ' + name);
+      const lines = [message, '', '\u2014 ' + name, email];
+      if (v('phone')) lines.push(v('phone'));
+      if (v('location')) lines.push('Location: ' + v('location'));
+      window.location.href = `mailto:${FALLBACK_EMAIL}?subject=${subject}&body=${encodeURIComponent(lines.join('\n'))}`;
+      showStatus(`Opening your email app with this inquiry ready to send. If nothing happens, ${contactLine}.`, 'ok');
+      return;
+    }
+
+    const about = topic || projectType;
+    const payload = {
+      access_key: key,
+      subject: `New quote request: ${name}${about ? ' \u2014 ' + about : ''}`,
+      from_name: 'Titanwall website',
+      replyto: email,
+      botcheck: false,
+      'Name': name,
+      'Email': email,
+      'Phone': v('phone') || '\u2014',
+      'Project type': projectType || '\u2014',
+      'Build location': v('location') || '\u2014',
+      'Asked about': topic || '\u2014',
+      'Project details': message,
+      'Sent from': location.href.split('#')[0],
+    };
+
+    setBusy(true);
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 20000);
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: ctrl.signal,
+      });
+      let data = {};
+      try { data = await res.json(); } catch (_) {}
+
+      if (res.ok && data.success) {
+        try { sessionStorage.removeItem(DRAFT_KEY); } catch (_) {}
+        quoteForm.reset();
+        delete quoteForm.dataset.interest;
+        const chip = document.getElementById('formInterest'); if (chip) chip.hidden = true;
+        showDone(name, email);
+        track('Quote submitted', { type: projectType || 'unspecified', topic: topic || 'none' });
+        return;
+      }
+      const reason = res.status === 429 ? 'rate-limited' : ('http-' + res.status);
+      track('Quote failed', { reason });
+      showStatus(res.status === 429
+        ? `Too many attempts in a short time. Please wait a minute and try again, or ${contactLine}.`
+        : `Sorry \u2014 that didn\u2019t go through. Your message is still here; try again, or ${contactLine}.`, 'err');
+    } catch (err) {
+      const offline = navigator.onLine === false;
+      track('Quote failed', { reason: err.name === 'AbortError' ? 'timeout' : (offline ? 'offline' : 'network') });
+      showStatus(offline
+        ? `You appear to be offline. Your message is still here \u2014 send it once you\u2019re reconnected, or ${contactLine}.`
+        : `We couldn\u2019t reach our server. Your message is still here; try again, or ${contactLine}.`, 'err');
+    } finally {
+      clearTimeout(timer);
+      setBusy(false);
+    }
   });
 
   } // end form guard
@@ -481,6 +677,8 @@
       label.textContent = topic;
       chip.hidden = false;
       form.dataset.interest = topic;
+      const typeMap = { 'Commercial build': 'Commercial / industrial', 'Grow facility': 'Commercial / industrial', 'Residential build': 'Residential home', 'Affordable housing build': 'Multi-unit / affordable', 'Custom build': 'Custom build' };
+      if (typeMap[topic] && form.project_type && !form.project_type.value) form.project_type.value = typeMap[topic];
       const msg = form.message;
       const line = `I'd like to ask about ${topic}.`;
       if (!msg.value.trim() || msg.value === seeded) { msg.value = line + '\n\n'; seeded = msg.value; }

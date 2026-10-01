@@ -9,13 +9,83 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Titanwall MGO — Structural Insulated Panels">
 <meta property="og:description" content="Structure, insulation, and barrier in one panel. Precision-manufactured indoors, shipped flat-pack, assembled on site.">
-<meta property="og:url" content="https://mitchjpeers.github.io/titanwall-site/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0d10'/%3E%3Cpath d='M16 5l10 5.5v11L16 27 6 21.5v-11z' fill='none' stroke='%235b8dff' stroke-width='2'/%3E%3Cpath d='M16 5v22M6 10.5l10 5.5 10-5.5' fill='none' stroke='%235b8dff' stroke-width='1.5' opacity='.6'/%3E%3C/svg%3E">
+<!-- seo:start (maintained by tools/seo.js) -->
+<link rel="canonical" href="https://mitchjpeers.github.io/titanwall-site/">
+<meta property="og:site_name" content="Titanwall MGO">
+<meta property="og:locale" content="en_CA">
+<meta property="og:url" content="https://mitchjpeers.github.io/titanwall-site/">
+<meta property="og:image" content="https://mitchjpeers.github.io/titanwall-site/assets/og-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Titanwall MGO: structure, insulation, barrier, one panel">
+<meta name="twitter:image" content="https://mitchjpeers.github.io/titanwall-site/assets/og-share.jpg">
+<meta name="theme-color" content="#0b0d10">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<!-- seo:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
+<!-- ld:start (maintained by tools/seo.js) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://mitchjpeers.github.io/titanwall-site/#business",
+      "name": "Titanwall MGO",
+      "alternateName": "Titanwall Technologies",
+      "description": "Manufacturer of MGO structural insulated panels: structure, insulation, air barrier and vapour barrier in one engineered panel, precision-manufactured in High River, Alberta.",
+      "url": "https://mitchjpeers.github.io/titanwall-site/",
+      "logo": "https://mitchjpeers.github.io/titanwall-site/assets/logo-cube.png",
+      "image": "https://mitchjpeers.github.io/titanwall-site/assets/og-share.jpg",
+      "telephone": "+1-403-606-0855",
+      "email": "marc@titanwall.com",
+      "foundingDate": "2005",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "High River",
+        "addressRegion": "AB",
+        "addressCountry": "CA"
+      },
+      "areaServed": [
+        "Canada",
+        "United States"
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "07:00",
+          "closes": "17:00"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/titanwalltechnologies/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mitchjpeers.github.io/titanwall-site/#website",
+      "url": "https://mitchjpeers.github.io/titanwall-site/",
+      "name": "Titanwall MGO",
+      "publisher": {
+        "@id": "https://mitchjpeers.github.io/titanwall-site/#business"
+      }
+    }
+  ]
+}
+</script>
+<!-- ld:end -->
 </head>
 <body>
 
@@ -868,23 +938,77 @@
           <span>High River, AB, Canada</span>
         </div>
       </div>
-      <form class="reveal" id="quoteForm" novalidate>
+      <form class="reveal quote-form" id="quoteForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <!-- FORM DELIVERY: paste the Web3Forms access key below (created with the
+             inbox that should receive quote requests). Until it is set, the form
+             falls back to opening the visitor's email app. -->
+        <input type="hidden" name="access_key" value="">
+        <input type="hidden" name="subject" value="New quote request from the Titanwall website">
+        <input type="hidden" name="from_name" value="Titanwall website">
+        <input type="hidden" name="redirect" value="https://mitchjpeers.github.io/titanwall-site/thanks.html">
+        <!-- spam trap: real visitors never see or fill this -->
+        <div class="hp" aria-hidden="true"><label>Leave this unchecked <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></div>
+
         <p class="form-interest" id="formInterest" hidden><span>Asking about <b></b></span><button type="button" aria-label="Clear topic">&times;</button></p>
-        <div class="field">
-          <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
-          <input id="name" name="name" type="text" autocomplete="name" required>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
+            <input id="name" name="name" type="text" autocomplete="name" maxlength="100" required aria-describedby="name-err">
+            <p class="field-err" id="name-err" hidden></p>
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="160" required aria-describedby="email-err">
+            <p class="field-err" id="email-err" hidden></p>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="phone">Phone <span class="opt">optional</span></label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="40" aria-describedby="phone-err">
+            <p class="field-err" id="phone-err" hidden></p>
+          </div>
+          <div class="field">
+            <label for="project_type">Project type <span class="opt">optional</span></label>
+            <select id="project_type" name="project_type">
+              <option value="">Select one</option>
+              <option>Residential home</option>
+              <option>Cabin or acreage</option>
+              <option>Commercial / industrial</option>
+              <option>Agricultural</option>
+              <option>Multi-unit / affordable</option>
+              <option>Shed, sauna or garage</option>
+              <option>Custom build</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
         </div>
         <div class="field">
-          <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
-          <input id="email" name="email" type="email" autocomplete="email" required>
+          <label for="location">Build location <span class="opt">optional</span></label>
+          <input id="location" name="location" type="text" autocomplete="address-level2" maxlength="120" placeholder="Town or region">
         </div>
         <div class="field">
           <label for="message">Project details <span class="req" aria-hidden="true">*</span></label>
-          <textarea id="message" name="message" required></textarea>
+          <textarea id="message" name="message" required maxlength="5000" aria-describedby="message-err" placeholder="Size, timeline, drawings you have, anything else that helps"></textarea>
+          <p class="field-err" id="message-err" hidden></p>
         </div>
+
         <p class="form-status" id="formStatus" role="status" aria-live="polite" hidden></p>
-        <button type="submit" class="btn btn-primary" id="quoteSubmit" style="align-self:flex-start;margin-top:6px;">Send Inquiry</button>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="quoteSubmit">Send Inquiry</button>
+          <p class="form-privacy">We only use your details to reply to this inquiry. <a href="privacy.html">Privacy</a></p>
+        </div>
       </form>
+
+      <div class="quote-done" id="quoteDone" tabindex="-1" hidden>
+        <div class="qd-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h3 id="quoteDoneTitle">Thanks &mdash; your inquiry is in.</h3>
+        <p id="quoteDoneBody">We&rsquo;ll reply by email, usually within one business day.</p>
+        <p class="qd-sub">Need to talk sooner? Call <a href="tel:+14036060855">403 606-0855</a>, Mon&ndash;Fri, 7:00&nbsp;AM &ndash; 5:00&nbsp;PM.</p>
+        <button type="button" class="btn btn-outline" id="quoteAgain">Send another inquiry</button>
+      </div>
     </div>
   </section>
 
@@ -895,6 +1019,7 @@
     <span>&copy; 2026 Titanwall MGO Insulated Panels</span>
     <div class="footer-social">
       <a href="https://www.instagram.com/titanwalltechnologies/" target="_blank" rel="noopener">Instagram</a>
+      <a href="privacy.html">Privacy</a>
       <a href="#top">Back to top</a>
     </div>
   </div>
