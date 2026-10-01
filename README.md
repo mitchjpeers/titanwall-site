@@ -7,7 +7,7 @@ https://mitchjpeers.github.io/titanwall-site/
 
 ### 1. Quote form → inbox (Web3Forms)
 
-1. Go to https://web3forms.com and create an access key **using the inbox that should receive quote requests** (e.g. marc@titanwall.com). The key is emailed to that address.
+1. Go to https://web3forms.com and create an access key **using the inbox that should receive quote requests** (**valerie@titanwall.com**). The key is emailed to that address.
 2. In `index.html`, find `name="access_key" value=""` inside the quote form and paste the key between the quotes.
 3. Commit and push. Send one test inquiry from the live site and confirm it arrives (check spam the first time and mark it "not spam").
 

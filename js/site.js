@@ -237,7 +237,8 @@
   const quoteSubmit = document.getElementById('quoteSubmit');
   const quoteDone = document.getElementById('quoteDone');
   const SEND_LABEL = quoteSubmit.textContent;
-  const FALLBACK_EMAIL = 'marc@titanwall.com';
+  // quote requests go to Valerie; must match the inbox the Web3Forms key was created with
+  const FALLBACK_EMAIL = 'valerie@titanwall.com';
   const FALLBACK_PHONE = '403 606-0855';
   const DRAFT_KEY = 'tw_quote_draft';
   const DRAFT_FIELDS = ['name', 'email', 'phone', 'project_type', 'location', 'message'];
