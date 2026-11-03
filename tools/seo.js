@@ -157,6 +157,26 @@ Disallow: /404.html
 Sitemap: ${SITE}sitemap.xml
 `);
 
+// ------------------------------------------------------------ cache-busting
+// Browsers keep site.css / site.js cached, so a visitor can get new HTML with
+// an old script (new video tiles opening as raw files, for instance). Stamp
+// each reference with a hash of the file so the URL changes when the file does.
+{
+  const crypto = require('crypto');
+  const hash = f => crypto.createHash('sha1').update(fs.readFileSync(path.join(ROOT, f))).digest('hex').slice(0, 10);
+  const v = { 'css/site.css': hash('css/site.css'), 'js/site.js': hash('js/site.js') };
+  const stamp = s => s
+    .replace(/((?:href|src)="(?:\.\.\/)?css\/site\.css)(\?v=[0-9a-f]+)?"/g, `$1?v=${v['css/site.css']}"`)
+    .replace(/((?:href|src)="(?:\.\.\/)?js\/site\.js)(\?v=[0-9a-f]+)?"/g, `$1?v=${v['js/site.js']}"`);
+  const htmlPages = listFiles(['.html']).filter(f => !f.startsWith('_') && !f.startsWith('projects/'));
+  for (const f of htmlPages) { const s = rd(f), t = stamp(s); if (t !== s) wr(f, t); }
+  // the generator too, then regenerate so project pages carry the same stamp
+  const g = rd('build-projects.js'), gt = stamp(g);
+  if (gt !== g) { wr('build-projects.js', gt); }
+  execSync('node build-projects.js', { cwd: ROOT, stdio: 'ignore' });
+  console.log(`asset versions: css ${v['css/site.css']}, js ${v['js/site.js']}`);
+}
+
 console.log(`site url: ${SITE}`);
 console.log(`head tags: ${pages.length} pages + ${projectSlugs.length} project pages; sitemap: ${entries.length} urls`);
 

@@ -3331,3 +3331,112 @@
   @media(prefers-reduced-motion:reduce){
     .reel-card.vt img,.b-media img,.b-body,.reel-card.vt,.bento-card{transition:none;}
   }
+
+  /* ===== JOB-SITE FILMS (self-hosted video, replaces the Instagram reel cards) ===== */
+  .films{
+    display:grid;
+    grid-template-columns:1fr 1fr 0.92fr;
+    grid-template-rows:440px 300px;
+    gap:18px;
+  }
+  .film{
+    position:relative;display:block;overflow:hidden;isolation:isolate;
+    border:1px solid var(--line-strong);border-radius:6px;background:var(--panel);
+    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .film.fl-feature{grid-column:1 / 3;grid-row:1;}
+  .film.fl-tall{grid-column:3;grid-row:1 / 3;}
+  .film.fl-small{grid-column:1;grid-row:2;}
+  .fl-poster,.fl-preview{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .fl-poster{transition:transform .7s cubic-bezier(.2,.8,.2,1), filter .4s ease;filter:saturate(.92) brightness(.9);}
+  .fl-preview{opacity:0;transition:opacity .35s ease;}
+  .film.is-previewing .fl-preview{opacity:1;}
+  .film:hover .fl-poster{transform:scale(1.04);filter:saturate(1) brightness(1);}
+  .film::after{
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(180deg,rgba(11,13,16,.35) 0%,rgba(11,13,16,0) 28%,rgba(11,13,16,0) 48%,rgba(11,13,16,.88) 100%);
+  }
+  .film:hover,.film:focus-visible{border-color:rgba(91,141,255,.6);transform:translateY(-3px);box-shadow:0 24px 50px -24px rgba(0,0,0,.85);}
+  .fl-tag,.fl-dur{
+    position:absolute;top:14px;z-index:2;
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--white);background:rgba(11,13,16,.55);backdrop-filter:blur(6px);
+    border:1px solid rgba(255,255,255,.16);border-radius:2px;padding:4px 9px;
+  }
+  .fl-tag{left:14px;}
+  .fl-dur{right:14px;letter-spacing:.04em;}
+  .fl-play{
+    position:absolute;top:50%;left:50%;z-index:2;
+    width:68px;height:68px;margin:-34px 0 0 -34px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(255,255,255,.14);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.4);
+    transition:transform .3s ease, background .3s ease, border-color .3s ease, opacity .3s ease;
+  }
+  .fl-play svg{width:26px;height:26px;fill:#fff;margin-left:3px;}
+  .film:hover .fl-play,.film:focus-visible .fl-play{background:var(--cobalt);border-color:var(--cobalt);transform:scale(1.06);}
+  .film.is-previewing .fl-play{opacity:.85;}
+  .fl-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:24px 24px 22px;display:flex;flex-direction:column;gap:6px;}
+  .fl-title{font-family:var(--font-display);font-weight:600;font-size:22px;line-height:1.15;color:var(--white);}
+  .fl-feature .fl-title{font-size:clamp(24px,2.4vw,30px);}
+  .fl-sub{font-size:14px;line-height:1.5;color:var(--steel-light);max-width:560px;}
+
+  .film-follow{
+    grid-column:2;grid-row:2;
+    display:flex;flex-direction:column;justify-content:flex-end;gap:6px;
+    padding:26px 24px;border:1px solid var(--line-strong);border-radius:6px;
+    background:
+      radial-gradient(ellipse at 85% 0%,rgba(47,95,222,.22),transparent 60%),
+      linear-gradient(var(--line) 1px,transparent 1px) 0 0/28px 28px,
+      linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/28px 28px,
+      var(--panel);
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .film-follow:hover{border-color:rgba(91,141,255,.6);transform:translateY(-3px);}
+  .ff-icon{
+    width:46px;height:46px;border-radius:50%;margin-bottom:auto;
+    display:flex;align-items:center;justify-content:center;border:1px solid rgba(91,141,255,.45);
+  }
+  .ff-icon svg{width:22px;height:22px;fill:none;stroke:var(--cobalt-light);stroke-width:1.7;}
+  .ff-icon svg .dotfill{fill:var(--cobalt-light);stroke:none;}
+  .ff-k{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);}
+  .ff-title{font-family:var(--font-display);font-weight:600;font-size:22px;color:var(--white);}
+  .ff-sub{font-size:14px;color:var(--steel-light);}
+  .ff-go{margin-top:8px;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--cobalt-light);}
+
+  /* player */
+  .film-dialog{
+    border:1px solid var(--line-strong);border-radius:6px;padding:0;background:#000;color:var(--white);
+    width:min(1100px,94vw);max-width:94vw;max-height:94vh;overflow:hidden;
+  }
+  .film-dialog.is-portrait{width:min(560px,94vw);}
+  .film-dialog::backdrop{background:rgba(5,6,9,.88);backdrop-filter:blur(4px);}
+  .fd-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 10px 10px 18px;background:var(--bg-alt);border-bottom:1px solid var(--line-strong);}
+  .fd-title{font-family:var(--font-display);font-weight:600;font-size:17px;}
+  .fd-close{
+    width:40px;height:40px;border-radius:50%;border:1px solid var(--line-strong);background:transparent;
+    color:var(--white);font-size:22px;line-height:1;cursor:pointer;flex-shrink:0;
+  }
+  .fd-close:hover{border-color:var(--cobalt-light);color:var(--cobalt-light);}
+  .fd-stage{aspect-ratio:var(--ar,16 / 9);max-height:calc(94vh - 62px);margin:0 auto;background:#000;}
+  .fd-stage video{display:block;width:100%;height:100%;object-fit:contain;background:#000;}
+
+  @media(max-width:900px){
+    .films{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+    .film.fl-feature{grid-column:1 / -1;grid-row:auto;aspect-ratio:16/9;}
+    .film.fl-tall{grid-column:1;grid-row:auto;aspect-ratio:3/4;}
+    .film.fl-small{grid-column:2;grid-row:auto;aspect-ratio:3/4;}
+    .film-follow{grid-column:1 / -1;grid-row:auto;min-height:180px;}
+  }
+  @media(max-width:600px){
+    .films{grid-template-columns:1fr;}
+    .film.fl-feature,.film.fl-small{grid-column:1;aspect-ratio:4/3;}
+    .film.fl-tall{grid-column:1;aspect-ratio:4/5;}
+    .fl-cap{padding:20px 18px 18px;}
+    .fl-title,.fl-feature .fl-title{font-size:21px;}
+    /* landscape tiles are short here: lift the play button clear of the caption */
+    .film.fl-feature .fl-play,.film.fl-small .fl-play{top:34%;width:56px;height:56px;margin:-28px 0 0 -28px;}
+    .film.fl-feature .fl-sub{display:none;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .film,.fl-poster,.fl-play,.film-follow{transition:none;}
+  }

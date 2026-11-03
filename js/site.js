@@ -845,28 +845,68 @@
     }));
   });
 
-  // ---- #10 reels in a pop-up (Instagram loads only when someone chooses to watch) ----
-  (function initReels(){
-    const reels = document.querySelectorAll('a[data-reel]');
-    if (!reels.length || typeof HTMLDialogElement === 'undefined') return;
+  // ---- job-site films: silent preview on hover/focus, player with sound on click ----
+  (function initFilms(){
+    const films = document.querySelectorAll('a[data-film]');
+    if (!films.length) return;
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    // previews: only on real hover devices, never under reduced motion, and the
+    // file isn't requested until someone actually points at the tile
+    if (canHover && !prefersReduced) {
+      films.forEach(a => {
+        let v = null;
+        const start = () => {
+          if (!v) {
+            v = document.createElement('video');
+            v.className = 'fl-preview';
+            v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'auto';
+            v.setAttribute('aria-hidden', 'true');
+            v.src = a.dataset.preview;
+            a.insertBefore(v, a.querySelector('.fl-tag'));
+          }
+          a.classList.add('is-previewing');
+          v.play().catch(() => {});
+        };
+        const stop = () => { a.classList.remove('is-previewing'); if (v) v.pause(); };
+        a.addEventListener('mouseenter', start);
+        a.addEventListener('mouseleave', stop);
+        a.addEventListener('focus', start);
+        a.addEventListener('blur', stop);
+      });
+    }
+
+    if (typeof HTMLDialogElement === 'undefined') return;   // links still open the file directly
     const dlg = document.createElement('dialog');
-    dlg.className = 'reel-dialog';
-    dlg.setAttribute('aria-label', 'Instagram reel');
-    dlg.innerHTML = '<div class="rd-bar"><a target="_blank" rel="noopener" data-rd-link>Open on Instagram &#8599;</a><button type="button" class="rd-close" aria-label="Close">&times;</button></div><div class="rd-frame"></div>';
+    dlg.className = 'film-dialog';
+    dlg.innerHTML = '<div class="fd-bar"><span class="fd-title"></span><button type="button" class="fd-close" aria-label="Close video">&times;</button></div><div class="fd-stage"><video controls playsinline preload="metadata"></video></div>';
     document.body.appendChild(dlg);
-    const frame = dlg.querySelector('.rd-frame');
-    // empty the frame as well as closing, so a playing reel stops immediately
-    const close = () => { frame.innerHTML = ''; if (dlg.open) dlg.close(); };
-    dlg.querySelector('.rd-close').addEventListener('click', close);
+    const video = dlg.querySelector('video');
+    const title = dlg.querySelector('.fd-title');
+    let opener = null;
+    const close = () => { if (dlg.open) dlg.close(); };
+    dlg.querySelector('.fd-close').addEventListener('click', close);
     dlg.addEventListener('click', (e) => { if (e.target === dlg) close(); });
-    dlg.addEventListener('close', () => { frame.innerHTML = ''; });   // Esc closes without calling close()
-    reels.forEach(a => a.addEventListener('click', (e) => {
+    // stop and unload on any close (button, backdrop, Esc) so nothing keeps playing
+    dlg.addEventListener('close', () => {
+      video.pause(); video.removeAttribute('src'); video.load();
+      if (opener) opener.focus({ preventScroll: true });
+    });
+
+    films.forEach(a => a.addEventListener('click', (e) => {
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
       e.preventDefault();
-      const id = a.dataset.reel;
-      dlg.querySelector('[data-rd-link]').href = a.href;
-      frame.innerHTML = `<iframe src="https://www.instagram.com/p/${encodeURIComponent(id)}/embed/" title="Titanwall reel on Instagram" allowfullscreen loading="eager"></iframe>`;
+      opener = a;
+      films.forEach(f => { f.classList.remove('is-previewing'); const p = f.querySelector('.fl-preview'); if (p) p.pause(); });
+      title.textContent = a.dataset.title;
+      dlg.setAttribute('aria-label', a.dataset.title);
+      dlg.style.setProperty('--ar', a.dataset.w + ' / ' + a.dataset.h);
+      dlg.classList.toggle('is-portrait', +a.dataset.h > +a.dataset.w);
+      video.poster = a.querySelector('.fl-poster').src;
+      video.src = a.dataset.film;
       dlg.showModal();
+      video.play().catch(() => {});   // if the browser blocks it, the controls are there
+      track('Video play', { video: a.dataset.title });
     }));
   })();
 
