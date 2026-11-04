@@ -95,7 +95,7 @@ for (const p of pages) {
 let gen = rd('build-projects.js');
 const genBlock = headBlock('projects/${p.slug}.html', '../', null, null).replace(/`/g, '\\`');
 gen = gen.replace(/<!-- seo:start[\s\S]*?<!-- seo:end -->\n?/, '');
-gen = gen.replace(/(<link rel="icon" href="\$\{FAVICON\}">\n)/, `$1${genBlock}\n`);
+gen = gen.replace(/(<link rel="icon"[^>]*href="\$\{FAVICON\}">\n)/, `$1${genBlock}\n`);
 if (!gen.includes('seo:start')) throw new Error('generator favicon anchor not found');
 wr('build-projects.js', gen);
 execSync('node build-projects.js', { cwd: ROOT, stdio: 'ignore' });

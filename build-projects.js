@@ -133,7 +133,7 @@ const PROJECTS = [
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-const FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0d10'/%3E%3Cpath d='M16 5l10 5.5v11L16 27 6 21.5v-11z' fill='none' stroke='%235b8dff' stroke-width='2'/%3E%3Cpath d='M16 5v22M6 10.5l10 5.5 10-5.5' fill='none' stroke='%235b8dff' stroke-width='1.5' opacity='.6'/%3E%3C/svg%3E";
+const FAVICON = "../assets/favicon-64.png";
 
 function render(p, all) {
   const others = all.filter(o => o.slug !== p.slug).slice(0, 3);
@@ -153,7 +153,7 @@ function render(p, all) {
 <meta property="og:title" content="${esc(p.title)} — ${esc(p.category)} | Titanwall MGO">
 <meta property="og:description" content="${esc(p.blurb)}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="${FAVICON}">
+<link rel="icon" type="image/png" sizes="64x64" href="${FAVICON}">
 <!-- seo:start (maintained by tools/seo.js) -->
 <link rel="canonical" href="https://mitchjpeers.github.io/titanwall-site/projects/${p.slug}.html">
 <meta property="og:site_name" content="Titanwall MGO">
