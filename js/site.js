@@ -239,7 +239,7 @@
   const SEND_LABEL = quoteSubmit.textContent;
   // quote requests go to Valerie; must match the inbox the Web3Forms key was created with
   const FALLBACK_EMAIL = 'valerie@titanwall.com';
-  const FALLBACK_PHONE = '403 606-0855';
+  const FALLBACK_PHONE = '(780) 913-4718';
   const DRAFT_KEY = 'tw_quote_draft';
   const DRAFT_FIELDS = ['name', 'email', 'phone', 'project_type', 'location', 'message'];
   const el = (n) => quoteForm.elements[n];
@@ -309,7 +309,7 @@
     quoteSubmit.innerHTML = busy ? '<span class="spin" aria-hidden="true"></span>Sending\u2026' : SEND_LABEL;
   };
 
-  const contactLine = `email <a href="mailto:${FALLBACK_EMAIL}">${FALLBACK_EMAIL}</a> or call <a href="tel:+14036060855">${FALLBACK_PHONE}</a>`;
+  const contactLine = `email <a href="mailto:${FALLBACK_EMAIL}">${FALLBACK_EMAIL}</a> or call <a href="tel:+17809134718">${FALLBACK_PHONE}</a>`;
 
   const showDone = (name, email) => {
     const first = name.split(/\s+/)[0];
