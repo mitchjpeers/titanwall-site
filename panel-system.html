@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=409f112057">
+<link rel="stylesheet" href="css/site.css?v=c341e97914">
 </head>
 <body>
 
@@ -108,7 +108,7 @@
           </ul>
         </div>
         <figure class="fl-fig reveal" data-fl>
-          <div class="fl-bar"><span class="dwg">DETAIL / PANEL LAYERS</span><span>EXPLODED</span></div>
+          <div class="fl-bar"><span class="dwg">DETAIL / PANEL LAYERS</span><button type="button" class="fl-toggle" data-fl-toggle aria-pressed="false">Exploded</button></div>
           <div class="fl-draw">
             <svg class="fl-svg" viewBox="0 0 640 620" role="img" aria-labelledby="fl-t">
             <title id="fl-t">Exploded Titanwall MGO SIP: white MGO exterior skin, structural glue, high-density EPS core, structural glue, white MGO exterior skin</title>
@@ -117,7 +117,12 @@
               <pattern id="fl-beads-l" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#d4d9df"/><circle cx="3" cy="3" r="2.6" fill="#eef1f4"/><circle cx="8" cy="7.5" r="2.4" fill="#e7ebef"/></pattern>
               <pattern id="fl-beads-r" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#c4cad1"/><circle cx="3" cy="3" r="2.6" fill="#dfe4e9"/><circle cx="8" cy="7.5" r="2.4" fill="#d8dde3"/></pattern>
             </defs>
-            <g class="fl-layer" data-layer="skin" style="--i:0"><polygon points="74.9,474.3 381.3,593.0 381.3,573.9 74.9,455.2" fill="#c3c9d0"/><polygon points="565.1,521.8 381.3,593.0 381.3,573.9 565.1,502.7" fill="#aeb5bd"/><polygon points="258.7,384.0 565.1,502.7 381.3,573.9 74.9,455.2" fill="#eef1f4"/><polyline class="fl-edge" points="74.9,455.2 74.9,474.3 381.3,593.0 565.1,521.8 565.1,502.7 258.7,384.0 74.9,455.2 381.3,573.9 565.1,502.7"/><line class="fl-edge" x1="381.3" y1="593.0" x2="381.3" y2="573.9"/></g><g class="fl-layer" data-layer="glue" style="--i:1"><polygon points="74.9,403.2 381.3,521.9 381.3,514.9 74.9,396.2" fill="#c99d5e"/><polygon points="565.1,450.6 381.3,521.9 381.3,514.9 565.1,443.7" fill="#b3874a"/><polygon points="258.7,325.0 565.1,443.7 381.3,514.9 74.9,396.2" fill="#e0b877"/><polyline class="fl-edge" points="74.9,396.2 74.9,403.2 381.3,521.9 565.1,450.6 565.1,443.7 258.7,325.0 74.9,396.2 381.3,514.9 565.1,443.7"/><line class="fl-edge" x1="381.3" y1="521.9" x2="381.3" y2="514.9"/></g><g class="fl-layer" data-layer="core" style="--i:2"><polygon points="74.9,344.2 381.3,462.9 381.3,383.0 74.9,264.4" fill="url(#fl-beads-l)"/><polygon points="565.1,391.6 381.3,462.9 381.3,383.0 565.1,311.8" fill="url(#fl-beads-r)"/><polygon points="258.7,193.1 565.1,311.8 381.3,383.0 74.9,264.4" fill="url(#fl-beads-t)"/><polyline class="fl-edge" points="74.9,264.4 74.9,344.2 381.3,462.9 565.1,391.6 565.1,311.8 258.7,193.1 74.9,264.4 381.3,383.0 565.1,311.8"/><line class="fl-edge" x1="381.3" y1="462.9" x2="381.3" y2="383.0"/></g><g class="fl-layer" data-layer="glue" style="--i:3"><polygon points="74.9,212.3 381.3,331.0 381.3,324.0 74.9,205.4" fill="#c99d5e"/><polygon points="565.1,259.8 381.3,331.0 381.3,324.0 565.1,252.8" fill="#b3874a"/><polygon points="258.7,134.1 565.1,252.8 381.3,324.0 74.9,205.4" fill="#e0b877"/><polyline class="fl-edge" points="74.9,205.4 74.9,212.3 381.3,331.0 565.1,259.8 565.1,252.8 258.7,134.1 74.9,205.4 381.3,324.0 565.1,252.8"/><line class="fl-edge" x1="381.3" y1="331.0" x2="381.3" y2="324.0"/></g><g class="fl-layer" data-layer="skin" style="--i:4"><polygon points="74.9,153.3 381.3,272.0 381.3,252.9 74.9,134.2" fill="#c9cfd6"/><polygon points="565.1,200.8 381.3,272.0 381.3,252.9 565.1,181.7" fill="#b4bbc3"/><polygon points="258.7,63.0 565.1,181.7 381.3,252.9 74.9,134.2" fill="#f5f7f9"/><polyline class="fl-edge" points="74.9,134.2 74.9,153.3 381.3,272.0 565.1,200.8 565.1,181.7 258.7,63.0 74.9,134.2 381.3,252.9 565.1,181.7"/><line class="fl-edge" x1="381.3" y1="272.0" x2="381.3" y2="252.9"/></g>
+            <g class="fl-stack"><g class="fl-layer" data-layer="skin" style="--i:0"><polygon points="74.9,474.3 381.3,593.0 381.3,573.9 74.9,455.2" fill="#c3c9d0"/><polygon points="565.1,521.8 381.3,593.0 381.3,573.9 565.1,502.7" fill="#aeb5bd"/><polygon points="258.7,384.0 565.1,502.7 381.3,573.9 74.9,455.2" fill="#eef1f4"/><polyline class="fl-edge" points="74.9,455.2 74.9,474.3 381.3,593.0 565.1,521.8 565.1,502.7 258.7,384.0 74.9,455.2 381.3,573.9 565.1,502.7"/><line class="fl-edge" x1="381.3" y1="593.0" x2="381.3" y2="573.9"/></g><g class="fl-layer" data-layer="glue" style="--i:1"><polygon points="74.9,403.2 381.3,521.9 381.3,514.9 74.9,396.2" fill="#c99d5e"/><polygon points="565.1,450.6 381.3,521.9 381.3,514.9 565.1,443.7" fill="#b3874a"/><polygon points="258.7,325.0 565.1,443.7 381.3,514.9 74.9,396.2" fill="#e0b877"/><polyline class="fl-edge" points="74.9,396.2 74.9,403.2 381.3,521.9 565.1,450.6 565.1,443.7 258.7,325.0 74.9,396.2 381.3,514.9 565.1,443.7"/><line class="fl-edge" x1="381.3" y1="521.9" x2="381.3" y2="514.9"/></g><g class="fl-layer" data-layer="core" style="--i:2"><polygon points="74.9,344.2 381.3,462.9 381.3,383.0 74.9,264.4" fill="url(#fl-beads-l)"/><polygon points="565.1,391.6 381.3,462.9 381.3,383.0 565.1,311.8" fill="url(#fl-beads-r)"/><polygon points="258.7,193.1 565.1,311.8 381.3,383.0 74.9,264.4" fill="url(#fl-beads-t)"/><polyline class="fl-edge" points="74.9,264.4 74.9,344.2 381.3,462.9 565.1,391.6 565.1,311.8 258.7,193.1 74.9,264.4 381.3,383.0 565.1,311.8"/><line class="fl-edge" x1="381.3" y1="462.9" x2="381.3" y2="383.0"/></g><g class="fl-layer" data-layer="glue" style="--i:3"><polygon points="74.9,212.3 381.3,331.0 381.3,324.0 74.9,205.4" fill="#c99d5e"/><polygon points="565.1,259.8 381.3,331.0 381.3,324.0 565.1,252.8" fill="#b3874a"/><polygon points="258.7,134.1 565.1,252.8 381.3,324.0 74.9,205.4" fill="#e0b877"/><polyline class="fl-edge" points="74.9,205.4 74.9,212.3 381.3,331.0 565.1,259.8 565.1,252.8 258.7,134.1 74.9,205.4 381.3,324.0 565.1,252.8"/><line class="fl-edge" x1="381.3" y1="331.0" x2="381.3" y2="324.0"/></g><g class="fl-layer" data-layer="skin" style="--i:4"><polygon points="74.9,153.3 381.3,272.0 381.3,252.9 74.9,134.2" fill="#c9cfd6"/><polygon points="565.1,200.8 381.3,272.0 381.3,252.9 565.1,181.7" fill="#b4bbc3"/><polygon points="258.7,63.0 565.1,181.7 381.3,252.9 74.9,134.2" fill="#f5f7f9"/><polyline class="fl-edge" points="74.9,134.2 74.9,153.3 381.3,272.0 565.1,200.8 565.1,181.7 258.7,63.0 74.9,134.2 381.3,252.9 565.1,181.7"/><line class="fl-edge" x1="381.3" y1="272.0" x2="381.3" y2="252.9"/></g></g>
+            <g class="fl-press" aria-hidden="true">
+              <path class="fl-arrow" d="M320,96 v40 M308,124 l12,14 12,-14"/>
+              <path class="fl-arrow" d="M320,560 v-40 M308,532 l12,-14 12,14"/>
+              <text class="fl-unit" x="320" y="600" text-anchor="middle">ONE SOLID STRUCTURAL UNIT</text>
+            </g>
           </svg>
           </div>
           <figcaption class="fl-tip">Tap a layer to lift it out.</figcaption>
@@ -163,7 +168,45 @@
           </div>
         </div>
         <figure class="figure reveal">
-          <div class="sheet-img pin-wrap" data-pins><span class="spot spot-1" data-spot="1" aria-hidden="true"></span><span class="spot spot-2" data-spot="2" aria-hidden="true"></span><span class="spot spot-3" data-spot="3" aria-hidden="true"></span><img src="assets/br-chases.webp" alt="Cutaway of a Titanwall panel showing pre-burned circular electrical chases running vertically through the EPS core, spaced 8 inches from each edge and 16 inches on centre" loading="lazy"></div>
+          <div class="ch-fig" data-pins><div class="ch-bar"><span class="dwg">DETAIL / ELECTRICAL CHASES</span><span>4 FT PANEL</span></div><div class="ch-draw"><svg class="ch-svg" viewBox="0 0 600 640" role="img" aria-labelledby="ch-t ch-d">
+  <title id="ch-t">Standard electrical chase layout</title>
+  <desc id="ch-d">Plan and elevation of a 4 ft Titanwall panel. Three pre-burned electrical chases run vertically through the EPS core, 8 inches from each panel edge and 16 inches on centre, marked at the top and bottom of the panel.</desc>
+  <defs>
+    <pattern id="ch-beads" width="9" height="9" patternUnits="userSpaceOnUse"><rect width="9" height="9" fill="#dfe4ea"/><circle cx="2.5" cy="2.5" r="2.2" fill="#f7f9fb"/><circle cx="7" cy="6.5" r="2.2" fill="#f2f5f8"/></pattern>
+  </defs>
+  <text class="ch-view" x="20" y="22">PLAN — TOP OF PANEL</text>
+  <g class="ch-plan">
+    <rect class="ch-skin" x="20" y="104" width="432" height="5"/>
+    <rect class="ch-core" x="20" y="109" width="432" height="48"/>
+    <rect class="ch-skin" x="20" y="157" width="432" height="5"/>
+    <rect class="ch-ol" x="20" y="104" width="432" height="58"/>
+    <circle class="ch-hole" style="--k:0" cx="92" cy="133" r="9"/><circle class="ch-hole" style="--k:1" cx="236" cy="133" r="9"/><circle class="ch-hole" style="--k:2" cx="380" cy="133" r="9"/>
+  </g>
+  <g class="ch-lbl" style="--k:0"><path class="ch-lead" d="M458,106 h22"/><text class="ch-t" x="484" y="110">MGO skin</text></g>
+  <g class="ch-lbl" style="--k:1"><path class="ch-lead" d="M458,133 h22"/><text class="ch-t" x="484" y="137">EPS core</text></g>
+  <g class="ch-dims" data-spot="2">
+    <rect class="ch-hl" x="10" y="52" width="452" height="40" rx="3"/>
+    <path class="ch-dim" d="M20,58 v28"/><path class="ch-dim" d="M92,58 v28"/><path class="ch-dim" d="M236,58 v28"/><path class="ch-dim" d="M380,58 v28"/><path class="ch-dim" d="M452,58 v28"/>
+    <path class="ch-dim ch-dimline" pathLength="1" d="M20,72 H452"/>
+    <text class="ch-dt" x="56" y="67" text-anchor="middle">8″</text><text class="ch-dt" x="164" y="67" text-anchor="middle">16″</text><text class="ch-dt" x="308" y="67" text-anchor="middle">16″</text><text class="ch-dt" x="416" y="67" text-anchor="middle">8″</text>
+  </g>
+  <text class="ch-view" x="20" y="200">ELEVATION — NOT TO SCALE</text>
+  <g class="ch-elev">
+    <rect class="ch-face" x="20" y="232" width="432" height="340"/>
+    <path class="ch-run" style="--k:0" pathLength="1" d="M92,232 V572"/><path class="ch-run" style="--k:1" pathLength="1" d="M236,232 V572"/><path class="ch-run" style="--k:2" pathLength="1" d="M380,232 V572"/>
+    <rect class="ch-ol" x="20" y="232" width="432" height="340"/>
+  </g>
+  <g class="ch-marks" data-spot="1">
+    <rect class="ch-hl" x="78" y="214" width="28" height="22" rx="3"/><rect class="ch-hl" x="78" y="568" width="28" height="22" rx="3"/><path class="ch-mark" d="M85,224 h14 l-7,9 z"/><path class="ch-mark" d="M85,582 h14 l-7,-9 z"/><rect class="ch-hl" x="222" y="214" width="28" height="22" rx="3"/><rect class="ch-hl" x="222" y="568" width="28" height="22" rx="3"/><path class="ch-mark" d="M229,224 h14 l-7,9 z"/><path class="ch-mark" d="M229,582 h14 l-7,-9 z"/><rect class="ch-hl" x="366" y="214" width="28" height="22" rx="3"/><rect class="ch-hl" x="366" y="568" width="28" height="22" rx="3"/><path class="ch-mark" d="M373,224 h14 l-7,9 z"/><path class="ch-mark" d="M373,582 h14 l-7,-9 z"/>
+  </g>
+  <g class="ch-box" data-spot="3">
+    <rect class="ch-hl" x="214" y="378" width="44" height="58" rx="3"/>
+    <rect class="ch-open" x="223" y="388" width="26" height="38"/>
+  </g>
+  <g class="ch-lbl" style="--k:2"><path class="ch-lead" d="M386,300 H480"/><text class="ch-t" x="484" y="296">Pre-burned</text><text class="ch-t" x="484" y="318">electrical</text><text class="ch-t" x="484" y="340">chases</text></g>
+  <g class="ch-lbl" style="--k:3"><path class="ch-lead" d="M390,582 H480"/><text class="ch-t" x="484" y="578">Marked top</text><text class="ch-t" x="484" y="600">and bottom</text></g>
+  <text class="ch-cap" x="236" y="626" text-anchor="middle">STANDARD CHASE LAYOUT ON EVERY PANEL</text>
+</svg></div></div>
         </figure>
       </div>
     </div>
@@ -730,6 +773,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=a8909b8eb2"></script>
+<script src="js/site.js?v=1133873e67"></script>
 </body>
 </html>

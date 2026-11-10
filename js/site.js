@@ -1094,3 +1094,37 @@
     window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(check); } }, { passive: true });
     check();
   })();
+
+
+// ---- diagram upgrades ----
+
+  (function(){
+    const fig=document.querySelector('[data-fl]'); if(!fig) return;
+    const tg=fig.querySelector('[data-fl-toggle]');
+    const btns=[...document.querySelectorAll('[data-fl-list] [data-layer]')];
+    const set=p=>{ if(p){fig.dataset.pressed='';delete fig.dataset.sel;btns.forEach(b=>b.setAttribute('aria-pressed','false'));} else delete fig.dataset.pressed;
+      tg.textContent=p?'Exploded':'Pressed'; tg.setAttribute('aria-label',p?'Show exploded layers':'Show pressed panel'); };
+    tg.textContent='Pressed';
+    tg.addEventListener('click',()=>set(!('pressed' in fig.dataset)));
+    // tapping a layer (existing behaviour) explodes the panel first
+    const unpress=()=>{ if('pressed' in fig.dataset) set(false); };
+    btns.forEach(b=>b.addEventListener('click',unpress,true));
+    fig.querySelectorAll('.fl-layer').forEach(g=>g.addEventListener('click',unpress,true));
+    const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){ set(true); return; }
+    const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ io.disconnect(); setTimeout(()=>set(true),700); } },{threshold:.55});
+    io.observe(fig);
+  })();
+
+  (function(){
+    const fig=document.querySelector('.mez-fig'); if(!fig) return;
+    // each bolt lights as the ledger passes it (ledger runs 48..528 over 2s after .3s delay)
+    fig.querySelectorAll('.mz-bolt').forEach(b=>{ const t=(+b.getAttribute('cx')-48)/480; b.style.transitionDelay=(0.3+t*2*0.92)+'s'; });
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const nums=[...fig.querySelectorAll('.mz-n')];
+    nums.forEach(n=>n.textContent='0');
+    const run=()=>{ nums.forEach(n=>{ const row=n.closest('.mz-row'); [...row.querySelectorAll('.mz-bolt')].forEach((b,i)=>{
+      setTimeout(()=>{ n.textContent=String(i+1); }, parseFloat(b.style.transitionDelay)*1000+120); }); }); };
+    const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ io.disconnect(); run(); } },{threshold:.4});
+    io.observe(fig);
+  })();
