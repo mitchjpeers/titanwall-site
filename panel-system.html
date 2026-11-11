@@ -286,7 +286,7 @@
     <div class="container">
       <div class="section-head reveal">
         <div class="eyebrow">Technical Specifications</div>
-        <h2 id="spec-h">The numbers.</h2>
+        <h2 id="spec-h">Specs and options.</h2>
       </div>
 
       <div class="spec-cols">
@@ -333,6 +333,75 @@
             </div>
           </div>
           <p class="rbar-note">The SIP carries continuous insulation with reduced thermal bridging, so the full envelope acts as a thermal blanket. A stud wall interrupts its insulation at every framing member. <a href="#r-value" class="inline-link">Compare every thickness and core &darr;</a></p>
+        </div>
+      </div>
+
+      <!-- THICKNESS / R-VALUE / LOADS (moved from homepage) -->
+      <div class="section-head reveal" style="margin-top:80px;">
+        <div class="eyebrow">Options</div>
+        <h2>Thickness, R-value, and load ratings.</h2>
+      </div>
+
+      <div class="spec-makeup reveal">
+        <b>Panel make-up:</b> MGO sheathing, 3&times; fibreglass mesh, rigid EPS continuous insulation, dimensional-lumber framing, connections 4&nbsp;ft O.C.
+      </div>
+
+      <div class="spec-cols">
+        <div class="tp reveal" data-tp>
+          <div class="tp-controls">
+            <div class="tp-group">
+              <span class="ctl-label" id="tp-t-lbl">Thickness</span>
+              <div class="seg" role="radiogroup" aria-labelledby="tp-t-lbl">
+                <button type="button" role="radio" aria-checked="false" data-t="4.5">4.5&Prime;</button>
+                <button type="button" role="radio" aria-checked="true" data-t="6.5">6.5&Prime;</button>
+                <button type="button" role="radio" aria-checked="false" data-t="8.5">8.5&Prime;</button>
+                <button type="button" role="radio" aria-checked="false" data-t="10.25">10.25&Prime;</button>
+              </div>
+            </div>
+            <div class="tp-group">
+              <span class="ctl-label" id="tp-c-lbl">Core</span>
+              <div class="seg" role="radiogroup" aria-labelledby="tp-c-lbl">
+                <button type="button" role="radio" aria-checked="true" data-c="eps">EPS</button>
+                <button type="button" role="radio" aria-checked="false" data-c="gps">GPS</button>
+              </div>
+            </div>
+          </div>
+          <div class="tp-result" aria-live="polite">
+            <div class="tp-num"><span class="tp-rv" data-tp-rv>R-23</span><span class="tp-sub" data-tp-sub>6.5&Prime; panel &middot; EPS core</span></div>
+            <div class="tp-bar" aria-hidden="true"><i data-tp-bar style="width:48%"></i></div>
+            <p class="tp-uses"><b>Common uses</b> <span data-tp-uses>Cladding, exterior walls, basement floors</span></p>
+          </div>
+        </div>
+        <div class="table-wrap reveal">
+          <table class="spec tp-table">
+            <caption>Thickness / R-value</caption>
+            <thead>
+              <tr><th scope="col">Thickness</th><th scope="col" class="col-own">EPS core</th><th scope="col" class="col-own">GPS core</th><th scope="col">Common uses</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">4.5 in</th><td class="col-own">R-16</td><td class="col-own">&mdash;</td><td>Cladding, fences, and interior walls</td></tr>
+              <tr><th scope="row">6.5 in</th><td class="col-own">R-23</td><td class="col-own">R-29</td><td>Cladding, exterior walls, basement floors</td></tr>
+              <tr><th scope="row">8.5 in</th><td class="col-own">R-29</td><td class="col-own">R-38</td><td>Basement walls, larger shop walls, roofs</td></tr>
+              <tr><th scope="row">10.25 in</th><td class="col-own">R-37</td><td class="col-own">R-48</td><td>Roofs</td></tr>
+            </tbody>
+          </table>
+          <a href="#r-value" class="table-link">How much R-value do you really need? &#8594;</a>
+        </div>
+
+        <div>
+          <div class="table-wrap reveal">
+            <table class="spec">
+              <caption>Structural load ratings</caption>
+              <thead>
+                <tr><th scope="col">Load type</th><th scope="col">Design</th><th scope="col">Ultimate</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Racking</th><td>&mdash;</td><td class="col-own">1,600 lbf / ft width</td></tr>
+                <tr><th scope="row">Transverse</th><td>160 lb / sq ft</td><td class="col-own">260 lb / sq ft</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="spec-note reveal">Design ratings are with lumber, ultimate ratings without. Axial ratings available on request, pending engineer confirmation.</p>
         </div>
       </div>
 
