@@ -3584,7 +3584,7 @@
 }
 header, footer.site-footer, .hero, .proj-hero, .intro-overlay,
 .film, .film-follow, .film-dialog, .bento-card,
-.fl-fig, .pk-fig, .ch-fig, .mez-fig, .bp-stage, .rchart, .ps-sheet, .xray{
+.fl-fig, .pk-fig, .ch-fig, .mez-fig, .bp-stage, .rchart, .ps-sheet, .xr-stage{
   --bg:#0b0d10; --bg-alt:#12151a; --panel:#171b21; --panel-2:#1d222a;
   --steel:#8b93a0; --steel-light:#c7cdd6;
   --cobalt-light:#5b8dff; --cobalt-pale:#9fc0ff;
