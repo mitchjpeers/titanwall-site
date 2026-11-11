@@ -3561,3 +3561,11 @@
   .ex-wrap{background:#0f1319!important;}
   .ex-wrap img{filter:invert(1) hue-rotate(180deg) saturate(1.15) brightness(.92) contrast(1.05);mix-blend-mode:screen;}
   .ps-sheet-img.ex-wrap{background:linear-gradient(var(--line) 1px,transparent 1px) 0 0/28px 28px,linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/28px 28px,#0f1319!important;}
+
+/* ===== BUILD ANIMATION (Inside the Build) ===== */
+.films.films-one{grid-template-columns:1fr;grid-template-rows:auto;}
+.films-one .film.fl-feature{grid-column:1;grid-row:auto;aspect-ratio:16/9;}
+@media(max-width:600px){
+  .films-one .film.fl-feature{aspect-ratio:16/10;}
+  .films-one .film.fl-feature .fl-play{top:40%;}
+}
