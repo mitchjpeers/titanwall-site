@@ -241,7 +241,7 @@
   const FALLBACK_EMAIL = 'valerie@titanwall.com';
   const FALLBACK_PHONE = '(780) 913-4718';
   const DRAFT_KEY = 'tw_quote_draft';
-  const DRAFT_FIELDS = ['name', 'email', 'phone', 'project_type', 'location', 'message'];
+  const DRAFT_FIELDS = ['name', 'email', 'phone', 'project_type', 'location', 'building_size', 'message'];
   const el = (n) => quoteForm.elements[n];
 
   const showStatus = (html, kind) => {
@@ -364,6 +364,7 @@
       const lines = [message, '', '\u2014 ' + name, email];
       if (v('phone')) lines.push(v('phone'));
       if (v('location')) lines.push('Location: ' + v('location'));
+      if (v('building_size')) lines.push('Building size: ' + v('building_size'));
       window.location.href = `mailto:${FALLBACK_EMAIL}?subject=${subject}&body=${encodeURIComponent(lines.join('\n'))}`;
       showStatus(`Opening your email app with this inquiry ready to send. If nothing happens, ${contactLine}.`, 'ok');
       return;
@@ -381,6 +382,7 @@
       'Phone': v('phone') || '\u2014',
       'Project type': projectType || '\u2014',
       'Build location': v('location') || '\u2014',
+      'Building size': v('building_size') || '\u2014',
       'Asked about': topic || '\u2014',
       'Project details': message,
       'Sent from': location.href.split('#')[0],

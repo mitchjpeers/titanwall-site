@@ -3626,3 +3626,31 @@ header, footer.site-footer, .hero, .proj-hero, .intro-overlay,
 /* base plate step 6: caulk bead */
 .bp-svg .caulk{fill:none;stroke:#f1f3f5;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0;}
 .play .now .caulk{animation:bpDraw 1.1s cubic-bezier(.4,0,.2,1) both;}
+
+/* ===== MADE IN ALBERTA badge ===== */
+.made-ab{
+  display:inline-flex;align-items:center;gap:8px;width:max-content;
+  font-family:var(--font-mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cobalt-light);border:1px solid currentColor;border-radius:2px;padding:6px 11px;
+}
+.made-ab::before{content:"";width:7px;height:7px;background:currentColor;border-radius:50%;}
+.made-ab-hero{margin-top:22px;color:#fff;border-color:rgba(255,255,255,.55);}
+.precision-head .made-ab{margin-bottom:14px;}
+
+/* ===== MEZZANINE infographic + Titanwall vs pole building ===== */
+.mez-info{margin:56px 0 0;border:1px solid var(--line-strong);border-radius:4px;overflow:hidden;background:var(--panel);}
+.mez-info img{display:block;width:100%;height:auto;}
+.mez-info figcaption{padding:10px 16px;font-size:13.5px;color:var(--steel);border-top:1px solid var(--line);}
+.mez-vs{margin-top:48px;}
+.mez-vs .mzv-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;}
+.mez-vs .mzv-col{border:1px solid var(--line-strong);border-radius:4px;background:var(--panel);overflow:hidden;}
+.mez-vs .mzv-head{padding:12px 18px;font-family:var(--font-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#5a6370;}
+.mez-vs .mzv-own .mzv-head{background:var(--cobalt);}
+.mez-vs .mzv-list{list-style:none;padding:8px 18px 12px;}
+.mez-vs .mzv-list li{position:relative;padding:9px 0 9px 30px;border-bottom:1px solid var(--line);font-size:15.5px;}
+.mez-vs .mzv-list li:last-child{border-bottom:0;}
+.mez-vs .mzv-list li::before{position:absolute;left:0;top:8px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;}
+.mez-vs .mzv-list.yes li::before{content:"\2713";background:#1f9d57;}
+.mez-vs .mzv-list.no li::before{content:"\2715";background:#d2443c;}
+.mez-vs .mez-note{margin-top:14px;}
+@media(max-width:640px){.mez-vs .mzv-grid{grid-template-columns:1fr;}.mez-info{margin-top:40px;}}
