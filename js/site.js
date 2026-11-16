@@ -75,8 +75,19 @@
       window.addEventListener('wheel', dismissIntro, { passive: true });
       window.addEventListener('touchstart', dismissIntro, { passive: true });
 
-      // shortened from 2600ms — the sequence resolves by ~1.4s
-      window.setTimeout(dismissIntro, 2100);
+      // logo film: leave when it ends; never hold the page longer than 6.5s,
+      // and get out of the way at once if the video cannot play
+      const introVideo = document.getElementById('introVideo');
+      if (introVideo) {
+        introVideo.muted = true;
+        introVideo.addEventListener('ended', dismissIntro);
+        introVideo.addEventListener('error', dismissIntro);
+        const p = introVideo.play();
+        if (p && p.catch) p.catch(() => window.setTimeout(dismissIntro, 600));
+        window.setTimeout(dismissIntro, 6500);
+      } else {
+        window.setTimeout(dismissIntro, 2100);
+      }
     }
   }
 
