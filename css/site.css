@@ -3692,10 +3692,10 @@ header, footer.site-footer, .hero, .proj-hero, .intro-overlay,
 .mzx.reveal:not(.in) .dimg,.mzx.rewind .dimg{opacity:0;}
 .mzx.rewind .mem,.mzx.rewind .bolt,.mzx.rewind .deck,.mzx.rewind .dimg,.mzx.rewind .ledger{transition:none!important;}
 .mzx.in .mem{transition-delay:calc(.15s + var(--k) * .09s);}
-.mzx.in .bolt{transition-delay:calc(1.7s + var(--k) * var(--step));}
-.mzx.in:not(.rewind) .ping{animation:mzxPing .9s ease-out both;animation-delay:calc(1.75s + var(--k) * var(--step));}
-.mzx.in .deck{transition-delay:3.1s;}
-.mzx.in .dimg{transition-delay:3.7s;}
+.mzx.in .bolt{transition-delay:calc(2.7s + var(--k) * var(--step));}
+.mzx.in:not(.rewind) .ping{animation:mzxPing .9s ease-out both;animation-delay:calc(2.75s + var(--k) * var(--step));}
+.mzx.in .deck{transition-delay:1.7s;}
+.mzx.in .dimg{transition-delay:4.6s;}
 @keyframes mzxPing{0%{opacity:.95;transform:scale(.6);}100%{opacity:0;transform:scale(2.6);}}
 @media(max-width:820px){.mzx-grid{grid-template-columns:1fr;padding:12px;}.mzx-count{font-size:46px;}}
 @media(prefers-reduced-motion:reduce){.mzx .mem,.mzx .bolt,.mzx .deck,.mzx .dimg,.mzx .ledger{transition:none!important;opacity:1!important;transform:none!important;}.mzx .ping{animation:none!important;}.mzx-replay{display:none;}}

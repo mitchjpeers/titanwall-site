@@ -1154,7 +1154,7 @@
       const el = card.querySelector('.mzx-count'); const to = +el.dataset.to;
       const step = parseFloat(getComputedStyle(card).getPropertyValue('--step')) || 0.2;
       el.textContent = '0';
-      for (let i = 0; i < to; i++) timers.push(setTimeout(() => { el.textContent = String(i + 1); }, (1.7 + i * step) * 1000 + 200));
+      for (let i = 0; i < to; i++) timers.push(setTimeout(() => { el.textContent = String(i + 1); }, (2.7 + i * step) * 1000 + 200));
     });
   };
   if (reduce) return;
