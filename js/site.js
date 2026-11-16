@@ -1130,3 +1130,28 @@
     const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ io.disconnect(); run(); } },{threshold:.4});
     io.observe(fig);
   })();
+
+// ---- mezzanine v2: count the attachment points as they light up, with replay ----
+(function(){
+  const fig = document.querySelector('.mez-fig.mzx'); if (!fig) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cards = [...fig.querySelectorAll('.mzx-card')];
+  let timers = [];
+  const count = () => {
+    timers.forEach(clearTimeout); timers = [];
+    cards.forEach(card => {
+      const el = card.querySelector('.mzx-count'); const to = +el.dataset.to;
+      const step = parseFloat(getComputedStyle(card).getPropertyValue('--step')) || 0.2;
+      el.textContent = '0';
+      for (let i = 0; i < to; i++) timers.push(setTimeout(() => { el.textContent = String(i + 1); }, (1.7 + i * step) * 1000 + 200));
+    });
+  };
+  if (reduce) return;
+  const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); count(); } }, { threshold: 0.25 });
+  io.observe(fig);
+  const btn = fig.querySelector('.mzx-replay');
+  if (btn) btn.addEventListener('click', () => {
+    fig.classList.add('rewind'); void fig.offsetWidth;
+    requestAnimationFrame(() => requestAnimationFrame(() => { fig.classList.remove('rewind'); count(); }));
+  });
+})();

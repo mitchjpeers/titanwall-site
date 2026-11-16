@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=1c8923d82f">
+<link rel="stylesheet" href="css/site.css?v=8fbb49eccc">
 </head>
 <body>
 
@@ -267,36 +267,107 @@
           <p class="mez-note">Mezzanine connections and load requirements are subject to structural engineering approval.</p>
         </div>
 
-        <figure class="mez-fig reveal">
-          <div class="mez-bar"><span class="dwg">DETAIL / MEZZANINE LEDGER</span><span>24 FT WALL &middot; ELEVATION</span></div>
-          <div class="mez-body">
-            <svg class="mz-svg" viewBox="0 0 620 420" role="img" aria-labelledby="mz-t mz-d">
-      <title id="mz-t">Ledger attachment points along a 24-foot wall</title>
-      <desc id="mz-d">A pole building with posts 8 feet apart offers 4 points to bolt a mezzanine ledger along 24 feet of wall. A Titanwall MGO SIP wall with 2-ply structural lumber at 4-foot centres offers 7.</desc>
-      <g class="mz-row">
-      <text x="48" y="20" class="mz-label">POLE BUILDING</text>
-      <text x="48" y="34" class="mz-sub">Structural posts commonly 6–12 ft apart (8 ft shown)</text>
-      <rect x="48" y="40" width="480" height="96" class="mz-wall-pole"/><rect x="43" y="40" width="10" height="96" class="mz-post"/><rect x="203" y="40" width="10" height="96" class="mz-post"/><rect x="363" y="40" width="10" height="96" class="mz-post"/><rect x="523" y="40" width="10" height="96" class="mz-post"/><rect x="48" y="80" width="480" height="9" class="mz-ledger"/><circle cx="48" cy="84.5" r="5.5" class="mz-bolt"/><circle cx="208" cy="84.5" r="5.5" class="mz-bolt"/><circle cx="368" cy="84.5" r="5.5" class="mz-bolt"/><circle cx="528" cy="84.5" r="5.5" class="mz-bolt"/><line x1="48" y1="136" x2="528" y2="136" class="mz-ground"/>
-      <text x="550" y="89" class="mz-count"><tspan class="mz-n" data-to="4">4</tspan> points</text><path d="M48,147 v10 M208,147 v10 M48,152 H208" class="mz-dim"/>
-      <text x="128" y="168" text-anchor="middle" class="mz-dimt">8 ft</text>
-    </g>
-      <g class="mz-row">
-      <text x="48" y="228" class="mz-label">TITANWALL MGO SIP WALL</text>
-      <text x="48" y="242" class="mz-sub">2-ply structural lumber at 4-ft centres</text>
-      <rect x="48" y="248" width="480" height="96" class="mz-wall-sip"/><rect x="44" y="248" width="8" height="96" class="mz-lumber"/><rect x="124" y="248" width="8" height="96" class="mz-lumber"/><rect x="204" y="248" width="8" height="96" class="mz-lumber"/><rect x="284" y="248" width="8" height="96" class="mz-lumber"/><rect x="364" y="248" width="8" height="96" class="mz-lumber"/><rect x="444" y="248" width="8" height="96" class="mz-lumber"/><rect x="524" y="248" width="8" height="96" class="mz-lumber"/><rect x="48" y="288" width="480" height="9" class="mz-ledger"/><circle cx="48" cy="292.5" r="5.5" class="mz-bolt"/><circle cx="128" cy="292.5" r="5.5" class="mz-bolt"/><circle cx="208" cy="292.5" r="5.5" class="mz-bolt"/><circle cx="288" cy="292.5" r="5.5" class="mz-bolt"/><circle cx="368" cy="292.5" r="5.5" class="mz-bolt"/><circle cx="448" cy="292.5" r="5.5" class="mz-bolt"/><circle cx="528" cy="292.5" r="5.5" class="mz-bolt"/><line x1="48" y1="344" x2="528" y2="344" class="mz-ground"/>
-      <text x="550" y="297" class="mz-count"><tspan class="mz-n" data-to="7">7</tspan> points</text><path d="M48,355 v10 M128,355 v10 M48,360 H128" class="mz-dim"/>
-      <text x="88" y="376" text-anchor="middle" class="mz-dimt">4 ft</text>
-    </g>
-    </svg>
-            <ul class="mez-legend" aria-hidden="true">
-              <li><i class="lg-bolt"></i>Ledger bolt location</li>
-              <li><i class="lg-ledger"></i>Mezzanine ledger</li>
-              <li><i class="lg-lumber"></i>Structural member</li>
-            </ul>
-          </div>
-          <figcaption>Mezzanine ledger connections &mdash; built-in structural attachment points.</figcaption>
-        </figure>
       </div>
+
+      <figure class="mez-fig mzx reveal">
+        <div class="mez-bar"><span class="dwg">MEZZANINE LEDGER &middot; ATTACHMENT POINTS</span><span>24 FT WALL</span></div>
+        <div class="mzx-grid">
+          <div class="mzx-card" style="--step:.30s">
+            <div class="mzx-head"><b>Pole building</b><span>Structural posts commonly 6&ndash;12 ft apart (8 ft shown)</span></div>
+            <svg class="mzx-svg" viewBox="0 0 620 404" role="img" aria-label="Pole building: a mezzanine ledger bolted to posts 8 feet apart, 4 attachment points along a 24 foot wall">
+<defs>
+  <pattern id="mzx-rib-pole" width="13" height="10" patternUnits="userSpaceOnUse"><rect width="13" height="10" fill="#cdc8bc"/><rect x="0" width="2" height="10" fill="#b4aea1"/><rect x="2" width="1.5" height="10" fill="#dedad0"/></pattern>
+  <pattern id="mzx-mgo-pole" width="7" height="7" patternUnits="userSpaceOnUse"><rect width="7" height="7" fill="#eceae4"/><circle cx="1.5" cy="2" r=".5" fill="#d6d2c8"/><circle cx="5" cy="5.4" r=".45" fill="#dcd8ce"/></pattern>
+  <linearGradient id="mzx-wood-pole" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2b676"/><stop offset="1" stop-color="#c08f4e"/></linearGradient>
+  <linearGradient id="mzx-under-pole" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b4a25"/><stop offset="1" stop-color="#3f2a13"/></linearGradient>
+  <linearGradient id="mzx-shade-pole" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".38"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient>
+  <linearGradient id="mzx-floor-pole" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d939b"/><stop offset="1" stop-color="#b9bec5"/></linearGradient>
+  <linearGradient id="mzx-light-pole" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".5" stop-color="#ffe2b0" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+</defs>
+<polygon points="50.0,310 570.0,310 620,404 0,404" fill="url(#mzx-floor-pole)"/>
+<path d="M180.0,310 L95,404 M310.0,310 L310,404 M440.0,310 L525,404 M22,362 H598" stroke="rgba(0,0,0,.10)" fill="none"/>
+<rect x="50.0" y="46" width="520.0" height="264" fill="url(#mzx-rib-pole)"/>
+<rect x="196" y="232" width="40" height="78" fill="#22262c"/><circle cx="230" cy="274" r="2" fill="#aab1ba"/>
+<rect x="338" y="266" width="42" height="44" fill="#1c2026" stroke="#3a4049"/><rect x="342" y="272" width="34" height="3" fill="#565d68"/>
+<rect x="384" y="266" width="42" height="44" fill="#1c2026" stroke="#3a4049"/><rect x="388" y="272" width="34" height="3" fill="#565d68"/>
+<rect x="430" y="266" width="42" height="44" fill="#1c2026" stroke="#3a4049"/><rect x="434" y="272" width="34" height="3" fill="#565d68"/>
+<rect x="476" y="266" width="42" height="44" fill="#1c2026" stroke="#3a4049"/><rect x="480" y="272" width="34" height="3" fill="#565d68"/>
+<rect x="334" y="262" width="188" height="5" fill="#c99a5b"/>
+<g class="mem" style="--k:0"><rect x="50.0" y="46" width="18" height="264" fill="url(#mzx-wood-pole)" stroke="#8a6230"/><path d="M55.0,54 V302 M62.0,76 V270" stroke="#a87a3f" stroke-width="1" fill="none"/></g>
+<g class="mem" style="--k:1"><rect x="214.3" y="46" width="18" height="264" fill="url(#mzx-wood-pole)" stroke="#8a6230"/><path d="M219.3,54 V302 M226.3,76 V270" stroke="#a87a3f" stroke-width="1" fill="none"/></g>
+<g class="mem" style="--k:2"><rect x="387.7" y="46" width="18" height="264" fill="url(#mzx-wood-pole)" stroke="#8a6230"/><path d="M392.7,54 V302 M399.7,76 V270" stroke="#a87a3f" stroke-width="1" fill="none"/></g>
+<g class="mem" style="--k:3"><rect x="552.0" y="46" width="18" height="264" fill="url(#mzx-wood-pole)" stroke="#8a6230"/><path d="M557.0,54 V302 M564.0,76 V270" stroke="#a87a3f" stroke-width="1" fill="none"/></g>
+<rect x="50.0" y="46" width="520.0" height="264" fill="url(#mzx-light-pole)"/>
+<rect x="50.0" y="46" width="520.0" height="264" fill="none" stroke="rgba(0,0,0,.35)"/>
+<rect class="deck" x="50.0" y="218" width="520.0" height="46" fill="url(#mzx-shade-pole)"/>
+<g class="ledger"><rect x="50.0" y="206" width="520.0" height="12" fill="url(#mzx-wood-pole)" stroke="#7d5727"/><path d="M70.0,210 H510.0 M140.0,214 H550.0" stroke="#a87a3f" stroke-width=".9" fill="none"/></g>
+<g class="deck"><polygon points="50.0,206 570.0,206 606.0,164 14.0,164" fill="url(#mzx-under-pole)"/><line x1="50.0" y1="206" x2="14.0" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="53.0" y1="206" x2="17.4" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="93.3" y1="206" x2="63.3" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="96.3" y1="206" x2="66.7" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="136.7" y1="206" x2="112.7" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="139.7" y1="206" x2="116.1" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="180.0" y1="206" x2="162.0" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="183.0" y1="206" x2="165.4" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="223.3" y1="206" x2="211.3" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="226.3" y1="206" x2="214.7" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="266.7" y1="206" x2="260.7" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="269.7" y1="206" x2="264.1" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="310.0" y1="206" x2="310.0" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="313.0" y1="206" x2="313.4" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="353.3" y1="206" x2="359.3" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="356.3" y1="206" x2="362.7" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="396.7" y1="206" x2="408.7" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="399.7" y1="206" x2="412.1" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="440.0" y1="206" x2="458.0" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="443.0" y1="206" x2="461.4" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="483.3" y1="206" x2="507.3" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="486.3" y1="206" x2="510.7" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="526.7" y1="206" x2="556.7" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="529.7" y1="206" x2="560.1" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="570.0" y1="206" x2="606.0" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="573.0" y1="206" x2="609.4" y2="164" stroke="#8f6730" stroke-width="1.6"/><rect x="57" y="164" width="10" height="228" fill="#15181d"/><rect x="57" y="164" width="3" height="228" fill="#3a4049"/><rect x="50" y="390" width="24" height="5" fill="#15181d"/><rect x="305" y="164" width="10" height="228" fill="#15181d"/><rect x="305" y="164" width="3" height="228" fill="#3a4049"/><rect x="298" y="390" width="24" height="5" fill="#15181d"/><rect x="553" y="164" width="10" height="228" fill="#15181d"/><rect x="553" y="164" width="3" height="228" fill="#3a4049"/><rect x="546" y="390" width="24" height="5" fill="#15181d"/><rect x="14.0" y="138" width="592.0" height="26" fill="url(#mzx-wood-pole)" stroke="#7d5727"/><path d="M44.0,146 H516.0 M134.0,155 H576.0" stroke="#a87a3f" stroke-width="1" fill="none"/><rect x="14.0" y="134" width="592.0" height="5" fill="#f0d9b0"/><rect x="14.5" y="82" width="5" height="52" fill="#15181d"/><rect x="87.8" y="82" width="5" height="52" fill="#15181d"/><rect x="161.0" y="82" width="5" height="52" fill="#15181d"/><rect x="234.2" y="82" width="5" height="52" fill="#15181d"/><rect x="307.5" y="82" width="5" height="52" fill="#15181d"/><rect x="380.8" y="82" width="5" height="52" fill="#15181d"/><rect x="454.0" y="82" width="5" height="52" fill="#15181d"/><rect x="527.2" y="82" width="5" height="52" fill="#15181d"/><rect x="600.5" y="82" width="5" height="52" fill="#15181d"/><rect x="14.0" y="79" width="592.0" height="5" fill="#15181d"/><line x1="14.0" y1="93" x2="606.0" y2="93" stroke="#2a2f37" stroke-width="1.2"/><line x1="14.0" y1="103" x2="606.0" y2="103" stroke="#2a2f37" stroke-width="1.2"/><line x1="14.0" y1="113" x2="606.0" y2="113" stroke="#2a2f37" stroke-width="1.2"/><line x1="14.0" y1="123" x2="606.0" y2="123" stroke="#2a2f37" stroke-width="1.2"/></g>
+<g class="bolt" style="--k:0"><circle class="ping" cx="58.0" cy="212.0" r="15"/><circle class="halo" cx="58.0" cy="212.0" r="14.5"/><circle cx="58.0" cy="212.0" r="6.6" fill="#e6eaef" stroke="#1d2228" stroke-width="1.4"/><circle cx="58.0" cy="212.0" r="3" fill="#39404a"/></g>
+<g class="bolt" style="--k:1"><circle class="ping" cx="223.3" cy="212.0" r="15"/><circle class="halo" cx="223.3" cy="212.0" r="14.5"/><circle cx="223.3" cy="212.0" r="6.6" fill="#e6eaef" stroke="#1d2228" stroke-width="1.4"/><circle cx="223.3" cy="212.0" r="3" fill="#39404a"/></g>
+<g class="bolt" style="--k:2"><circle class="ping" cx="396.7" cy="212.0" r="15"/><circle class="halo" cx="396.7" cy="212.0" r="14.5"/><circle cx="396.7" cy="212.0" r="6.6" fill="#e6eaef" stroke="#1d2228" stroke-width="1.4"/><circle cx="396.7" cy="212.0" r="3" fill="#39404a"/></g>
+<g class="bolt" style="--k:3"><circle class="ping" cx="562.0" cy="212.0" r="15"/><circle class="halo" cx="562.0" cy="212.0" r="14.5"/><circle cx="562.0" cy="212.0" r="6.6" fill="#e6eaef" stroke="#1d2228" stroke-width="1.4"/><circle cx="562.0" cy="212.0" r="3" fill="#39404a"/></g>
+<g class="dimg"><path d="M58.0,241 v14 M223.3,241 v14 M58.0,248 H223.3" stroke="#fff" stroke-width="1.6" fill="none"/><rect x="114.7" y="258" width="52" height="22" rx="3" fill="#0b0d10" opacity=".82"/><text x="140.7" y="274" text-anchor="middle" class="mzx-dt">8 ft</text></g>
+</svg>
+            <div class="mzx-foot"><span class="mzx-count" data-to="4">4</span><span class="mzx-unit">attachment points<small>one at each post</small></span></div>
+          </div>
+          <div class="mzx-card mzx-own" style="--step:.16s">
+            <div class="mzx-head"><b>Titanwall MGO SIP wall</b><span>2-ply structural lumber at 4-ft centres, inside the panels</span></div>
+            <svg class="mzx-svg" viewBox="0 0 620 404" role="img" aria-label="Titanwall MGO SIP wall: a mezzanine ledger bolted to 2-ply structural lumber every 4 feet, 7 attachment points along a 24 foot wall">
+<defs>
+  <pattern id="mzx-rib-titan" width="13" height="10" patternUnits="userSpaceOnUse"><rect width="13" height="10" fill="#cdc8bc"/><rect x="0" width="2" height="10" fill="#b4aea1"/><rect x="2" width="1.5" height="10" fill="#dedad0"/></pattern>
+  <pattern id="mzx-mgo-titan" width="7" height="7" patternUnits="userSpaceOnUse"><rect width="7" height="7" fill="#eceae4"/><circle cx="1.5" cy="2" r=".5" fill="#d6d2c8"/><circle cx="5" cy="5.4" r=".45" fill="#dcd8ce"/></pattern>
+  <linearGradient id="mzx-wood-titan" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2b676"/><stop offset="1" stop-color="#c08f4e"/></linearGradient>
+  <linearGradient id="mzx-under-titan" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b4a25"/><stop offset="1" stop-color="#3f2a13"/></linearGradient>
+  <linearGradient id="mzx-shade-titan" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".38"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient>
+  <linearGradient id="mzx-floor-titan" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d939b"/><stop offset="1" stop-color="#b9bec5"/></linearGradient>
+  <linearGradient id="mzx-light-titan" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".5" stop-color="#ffe2b0" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+</defs>
+<polygon points="50.0,310 570.0,310 620,404 0,404" fill="url(#mzx-floor-titan)"/>
+<path d="M180.0,310 L95,404 M310.0,310 L310,404 M440.0,310 L525,404 M22,362 H598" stroke="rgba(0,0,0,.10)" fill="none"/>
+<rect x="50.0" y="46" width="520.0" height="264" fill="url(#mzx-mgo-titan)"/>
+<line x1="136.7" y1="46" x2="136.7" y2="310" stroke="#b7b2a7" stroke-width="1.6"/>
+<line x1="223.3" y1="46" x2="223.3" y2="310" stroke="#b7b2a7" stroke-width="1.6"/>
+<line x1="310.0" y1="46" x2="310.0" y2="310" stroke="#b7b2a7" stroke-width="1.6"/>
+<line x1="396.7" y1="46" x2="396.7" y2="310" stroke="#b7b2a7" stroke-width="1.6"/>
+<line x1="483.3" y1="46" x2="483.3" y2="310" stroke="#b7b2a7" stroke-width="1.6"/>
+<rect x="196" y="232" width="40" height="78" fill="#22262c"/><circle cx="230" cy="274" r="2" fill="#aab1ba"/>
+<rect x="338" y="266" width="42" height="44" fill="#1c2026" stroke="#3a4049"/><rect x="342" y="272" width="34" height="3" fill="#565d68"/>
+<rect x="384" y="266" width="42" height="44" fill="#1c2026" stroke="#3a4049"/><rect x="388" y="272" width="34" height="3" fill="#565d68"/>
+<rect x="430" y="266" width="42" height="44" fill="#1c2026" stroke="#3a4049"/><rect x="434" y="272" width="34" height="3" fill="#565d68"/>
+<rect x="476" y="266" width="42" height="44" fill="#1c2026" stroke="#3a4049"/><rect x="480" y="272" width="34" height="3" fill="#565d68"/>
+<rect x="334" y="262" width="188" height="5" fill="#c99a5b"/>
+<g class="mem" style="--k:0"><rect x="51.0" y="48" width="13" height="260" fill="rgba(47,95,222,.20)" stroke="#2f5fde" stroke-width="1.4" stroke-dasharray="6 4"/><line x1="57.5" y1="48" x2="57.5" y2="308" stroke="#2f5fde" stroke-width="1" opacity=".6"/></g>
+<g class="mem" style="--k:1"><rect x="130.2" y="48" width="13" height="260" fill="rgba(47,95,222,.20)" stroke="#2f5fde" stroke-width="1.4" stroke-dasharray="6 4"/><line x1="136.7" y1="48" x2="136.7" y2="308" stroke="#2f5fde" stroke-width="1" opacity=".6"/></g>
+<g class="mem" style="--k:2"><rect x="216.8" y="48" width="13" height="260" fill="rgba(47,95,222,.20)" stroke="#2f5fde" stroke-width="1.4" stroke-dasharray="6 4"/><line x1="223.3" y1="48" x2="223.3" y2="308" stroke="#2f5fde" stroke-width="1" opacity=".6"/></g>
+<g class="mem" style="--k:3"><rect x="303.5" y="48" width="13" height="260" fill="rgba(47,95,222,.20)" stroke="#2f5fde" stroke-width="1.4" stroke-dasharray="6 4"/><line x1="310.0" y1="48" x2="310.0" y2="308" stroke="#2f5fde" stroke-width="1" opacity=".6"/></g>
+<g class="mem" style="--k:4"><rect x="390.2" y="48" width="13" height="260" fill="rgba(47,95,222,.20)" stroke="#2f5fde" stroke-width="1.4" stroke-dasharray="6 4"/><line x1="396.7" y1="48" x2="396.7" y2="308" stroke="#2f5fde" stroke-width="1" opacity=".6"/></g>
+<g class="mem" style="--k:5"><rect x="476.8" y="48" width="13" height="260" fill="rgba(47,95,222,.20)" stroke="#2f5fde" stroke-width="1.4" stroke-dasharray="6 4"/><line x1="483.3" y1="48" x2="483.3" y2="308" stroke="#2f5fde" stroke-width="1" opacity=".6"/></g>
+<g class="mem" style="--k:6"><rect x="556.0" y="48" width="13" height="260" fill="rgba(47,95,222,.20)" stroke="#2f5fde" stroke-width="1.4" stroke-dasharray="6 4"/><line x1="562.5" y1="48" x2="562.5" y2="308" stroke="#2f5fde" stroke-width="1" opacity=".6"/></g>
+<rect x="50.0" y="46" width="520.0" height="264" fill="url(#mzx-light-titan)"/>
+<rect x="50.0" y="46" width="520.0" height="264" fill="none" stroke="rgba(0,0,0,.35)"/>
+<rect class="deck" x="50.0" y="218" width="520.0" height="46" fill="url(#mzx-shade-titan)"/>
+<g class="ledger"><rect x="50.0" y="206" width="520.0" height="12" fill="url(#mzx-wood-titan)" stroke="#7d5727"/><path d="M70.0,210 H510.0 M140.0,214 H550.0" stroke="#a87a3f" stroke-width=".9" fill="none"/></g>
+<g class="deck"><polygon points="50.0,206 570.0,206 606.0,164 14.0,164" fill="url(#mzx-under-titan)"/><line x1="50.0" y1="206" x2="14.0" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="53.0" y1="206" x2="17.4" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="93.3" y1="206" x2="63.3" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="96.3" y1="206" x2="66.7" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="136.7" y1="206" x2="112.7" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="139.7" y1="206" x2="116.1" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="180.0" y1="206" x2="162.0" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="183.0" y1="206" x2="165.4" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="223.3" y1="206" x2="211.3" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="226.3" y1="206" x2="214.7" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="266.7" y1="206" x2="260.7" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="269.7" y1="206" x2="264.1" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="310.0" y1="206" x2="310.0" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="313.0" y1="206" x2="313.4" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="353.3" y1="206" x2="359.3" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="356.3" y1="206" x2="362.7" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="396.7" y1="206" x2="408.7" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="399.7" y1="206" x2="412.1" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="440.0" y1="206" x2="458.0" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="443.0" y1="206" x2="461.4" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="483.3" y1="206" x2="507.3" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="486.3" y1="206" x2="510.7" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="526.7" y1="206" x2="556.7" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="529.7" y1="206" x2="560.1" y2="164" stroke="#8f6730" stroke-width="1.6"/><line x1="570.0" y1="206" x2="606.0" y2="164" stroke="#d2a25f" stroke-width="5.5"/><line x1="573.0" y1="206" x2="609.4" y2="164" stroke="#8f6730" stroke-width="1.6"/><rect x="57" y="164" width="10" height="228" fill="#15181d"/><rect x="57" y="164" width="3" height="228" fill="#3a4049"/><rect x="50" y="390" width="24" height="5" fill="#15181d"/><rect x="305" y="164" width="10" height="228" fill="#15181d"/><rect x="305" y="164" width="3" height="228" fill="#3a4049"/><rect x="298" y="390" width="24" height="5" fill="#15181d"/><rect x="553" y="164" width="10" height="228" fill="#15181d"/><rect x="553" y="164" width="3" height="228" fill="#3a4049"/><rect x="546" y="390" width="24" height="5" fill="#15181d"/><rect x="14.0" y="138" width="592.0" height="26" fill="url(#mzx-wood-titan)" stroke="#7d5727"/><path d="M44.0,146 H516.0 M134.0,155 H576.0" stroke="#a87a3f" stroke-width="1" fill="none"/><rect x="14.0" y="134" width="592.0" height="5" fill="#f0d9b0"/><rect x="14.5" y="82" width="5" height="52" fill="#15181d"/><rect x="87.8" y="82" width="5" height="52" fill="#15181d"/><rect x="161.0" y="82" width="5" height="52" fill="#15181d"/><rect x="234.2" y="82" width="5" height="52" fill="#15181d"/><rect x="307.5" y="82" width="5" height="52" fill="#15181d"/><rect x="380.8" y="82" width="5" height="52" fill="#15181d"/><rect x="454.0" y="82" width="5" height="52" fill="#15181d"/><rect x="527.2" y="82" width="5" height="52" fill="#15181d"/><rect x="600.5" y="82" width="5" height="52" fill="#15181d"/><rect x="14.0" y="79" width="592.0" height="5" fill="#15181d"/><line x1="14.0" y1="93" x2="606.0" y2="93" stroke="#2a2f37" stroke-width="1.2"/><line x1="14.0" y1="103" x2="606.0" y2="103" stroke="#2a2f37" stroke-width="1.2"/><line x1="14.0" y1="113" x2="606.0" y2="113" stroke="#2a2f37" stroke-width="1.2"/><line x1="14.0" y1="123" x2="606.0" y2="123" stroke="#2a2f37" stroke-width="1.2"/></g>
+<g class="bolt" style="--k:0"><circle class="ping" cx="58.0" cy="212.0" r="15"/><circle class="halo" cx="58.0" cy="212.0" r="14.5"/><circle cx="58.0" cy="212.0" r="6.6" fill="#e6eaef" stroke="#1d2228" stroke-width="1.4"/><circle cx="58.0" cy="212.0" r="3" fill="#39404a"/></g>
+<g class="bolt" style="--k:1"><circle class="ping" cx="136.7" cy="212.0" r="15"/><circle class="halo" cx="136.7" cy="212.0" r="14.5"/><circle cx="136.7" cy="212.0" r="6.6" fill="#e6eaef" stroke="#1d2228" stroke-width="1.4"/><circle cx="136.7" cy="212.0" r="3" fill="#39404a"/></g>
+<g class="bolt" style="--k:2"><circle class="ping" cx="223.3" cy="212.0" r="15"/><circle class="halo" cx="223.3" cy="212.0" r="14.5"/><circle cx="223.3" cy="212.0" r="6.6" fill="#e6eaef" stroke="#1d2228" stroke-width="1.4"/><circle cx="223.3" cy="212.0" r="3" fill="#39404a"/></g>
+<g class="bolt" style="--k:3"><circle class="ping" cx="310.0" cy="212.0" r="15"/><circle class="halo" cx="310.0" cy="212.0" r="14.5"/><circle cx="310.0" cy="212.0" r="6.6" fill="#e6eaef" stroke="#1d2228" stroke-width="1.4"/><circle cx="310.0" cy="212.0" r="3" fill="#39404a"/></g>
+<g class="bolt" style="--k:4"><circle class="ping" cx="396.7" cy="212.0" r="15"/><circle class="halo" cx="396.7" cy="212.0" r="14.5"/><circle cx="396.7" cy="212.0" r="6.6" fill="#e6eaef" stroke="#1d2228" stroke-width="1.4"/><circle cx="396.7" cy="212.0" r="3" fill="#39404a"/></g>
+<g class="bolt" style="--k:5"><circle class="ping" cx="483.3" cy="212.0" r="15"/><circle class="halo" cx="483.3" cy="212.0" r="14.5"/><circle cx="483.3" cy="212.0" r="6.6" fill="#e6eaef" stroke="#1d2228" stroke-width="1.4"/><circle cx="483.3" cy="212.0" r="3" fill="#39404a"/></g>
+<g class="bolt" style="--k:6"><circle class="ping" cx="562.0" cy="212.0" r="15"/><circle class="halo" cx="562.0" cy="212.0" r="14.5"/><circle cx="562.0" cy="212.0" r="6.6" fill="#e6eaef" stroke="#1d2228" stroke-width="1.4"/><circle cx="562.0" cy="212.0" r="3" fill="#39404a"/></g>
+<g class="dimg"><path d="M58.0,241 v14 M136.7,241 v14 M58.0,248 H136.7" stroke="#fff" stroke-width="1.6" fill="none"/><rect x="71.3" y="258" width="52" height="22" rx="3" fill="#0b0d10" opacity=".82"/><text x="97.3" y="274" text-anchor="middle" class="mzx-dt">4 ft</text></g>
+</svg>
+            <div class="mzx-foot"><span class="mzx-count" data-to="7">7</span><span class="mzx-unit">attachment points<small>one every 4 feet</small></span></div>
+          </div>
+        </div>
+        <ul class="mez-legend mzx-legend" aria-hidden="true">
+          <li><i class="lg-ring"></i>Ledger attachment point</li>
+          <li><i class="lg-ledger"></i>Mezzanine ledger</li>
+          <li><i class="lg-post"></i>Pole-building post</li>
+          <li><i class="lg-ply"></i>2-ply structural lumber inside the panel</li>
+        </ul>
+        <figcaption>Mezzanine ledger connections &mdash; built-in structural attachment points. <button type="button" class="mzx-replay">Replay &#8634;</button></figcaption>
+      </figure>
 
       <figure class="mez-info reveal">
         <a href="assets/mezzanine-infographic.webp" target="_blank" rel="noopener" aria-label="Open the mezzanine infographic full size">
@@ -609,6 +680,6 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=a0fc927655"></script>
+<script src="js/site.js?v=17029d5d42"></script>
 </body>
 </html>
